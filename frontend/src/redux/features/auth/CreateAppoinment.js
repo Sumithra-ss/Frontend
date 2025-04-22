@@ -1,15 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
+const initialState= {
+           
+    name:"",
+    subject:"",
+    slotDate:"",
+     slotTime:"10:00",
+     Active1:""
+}
 
 export const CreateAppoinment = createSlice({
     name: "Appoinment",
-    initialState: {
-           
-        name:"",
-        subject:"",
-        slotDate:"",
-         slotTime:"10:00",
-         Active1:""
-    },
+    initialState,
     reducers: {
        
         setName: (state, action) => {
@@ -33,11 +34,11 @@ export const CreateAppoinment = createSlice({
 export const { setName ,setSubject,setSlotDate,setsSlotTime,setsACive1} = CreateAppoinment.actions;
 
 
-export const selectName = (state) => state.Appoinment.name;
-export const selectSubject = (state) => state.Appoinment.subject;
-export const selectSlotDate = (state) => state.Appoinment.slotDate;
-export const selectSlotTime = (state) => state.Appoinment.slotTime;
-export const selectACtive1 = (state )=> state.Appoinment.Active1;
+export const selectName = (state) => state.CreateAppoinment?.name;
+export const selectSubject = (state) => state.CreateAppoinment?.subject;
+export const selectSlotDate = (state) => state.CreateAppoinment?.slotDate;
+export const selectSlotTime = (state) => state.CreateAppoinment?.slotTime;
+export const selectACtive1 = (state )=> state.CreateAppoinment?.Active1;
 
 
 export default CreateAppoinment.reducer;

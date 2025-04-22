@@ -43,7 +43,8 @@ const handleMouseLeave = () => {
       
  async function updateProfile() {
   try {
-    const response = await fetch("http://localhost:3001/gettutor"); // Add a valid URL here
+   const response = await fetch("http://localhost:3001/gettutor"); // Add a valid URL here
+   //const response = await fetch("http://localhost:3001/getTutorsdetails?keyword=on"); // Add a valid URL here
     const {tutor}  = await response.json(); // Add await before response.json()
     console.log(tutor);
     setProduct(tutor)
@@ -57,9 +58,11 @@ const handleMouseLeave = () => {
      const stars=Array(5).fill(0)
 
   const fetchData = (value)=>{
-    fetch("http://localhost:3001/gettutor")
+   fetch("http://localhost:3001/gettutor")
+   //fetch("http://localhost:3001/getTutorsdetailsbyfeedback")
     .then((response)=>response.json())
     .then((json)=>{
+      console.log(json)
 const results =json.tutor.filter((user)=>{
   return (
     value && user && user.subject.toLowerCase().includes(value)
@@ -74,7 +77,7 @@ setResult1(results)
     setInput(value);
     fetchData(value)
   }
-  
+  console.log(products)
     return (
 
 
@@ -106,7 +109,9 @@ setResult1(results)
   
 
 <>
-<h1>Hellow</h1>
+<p class="font-normal md:font-bold ...">
+  Book Appoinment
+</p>
 
 
 
@@ -127,14 +132,14 @@ setResult1(results)
       products && products.map((record,index) => (
         
         <div className='border border-blue-200 rounded-xl overflow-hidden cursor-pointer hover:translate-y-[-10px] transition-all duration-500 ' key={index}>
-             < Link to ={`Appoinment/${record._id}`}>{record._id}</Link>
+             < Link to ={`dashboard/Appoinment/${record._id}`}>{record._id}</Link>
           <div className="card-image">
-         
+        
  <img className='' src={assets.l1}/>
           </div>
           console.log({record._id})
          <p className='text-gray-900 text-lg font-medium'>{record.subject}</p> 
-         <p>{record.Experience}</p>
+         <p>{record.Expertise }</p>
          <p>{record.Expertise}</p>
          <p>{record.Qualification}</p>
          <p>{record.Feedback}</p>

@@ -1,9 +1,11 @@
 import { Navigate, Outlet, useLoaderData } from "react-router";
 import NavBar from "../component/NavBar";
 
-const AdminWrapper = () => {
+const 
+AdminWrapper = () => {
 
     const user = useLoaderData();
+    console.log(user.role)
 
     if (!user) {
         return <Navigate to="/login" />

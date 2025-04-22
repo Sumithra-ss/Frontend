@@ -1,17 +1,22 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router";
-import { selectEmail, selectName, selectPassword, setEmail, setName, setPassword } from "../redux/features/auth/registerSlice";
+import { selectEmail, selectName, selectPassword, selectRole,setEmail, setName, setPassword,setRole } from "../redux/features/auth/registerSlice";
 import authServices from "../services/authServices";
  import { toast } from "react-toastify";
+import { useState } from "react";
 
+ 
+ 
 const RegisterPage = () => {
 
     const name = useSelector(selectName);
     const email = useSelector(selectEmail);
     const password = useSelector(selectPassword);
+    const role=useSelector(selectRole)
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    
 
     const handleRegister = (e) => {
         e.preventDefault();
@@ -34,9 +39,9 @@ const RegisterPage = () => {
             .catch((err) => {
                 toast.error(err.response.data.message);
             })
+           
     }
-
-    return (
+ return (
         <div className="container mt-5 text-center">
             <h1 className="text-4xl text-gray-800">Register for Chattr!</h1>
             <h4 className="text-xl text-gray-600">A simple chat application</h4>
@@ -52,6 +57,7 @@ const RegisterPage = () => {
                             id="name"
                             type="text"
                             placeholder="Name"
+                            
                             value={name}
                             onChange={(e) => dispatch(setName(e.target.value))}
                         />
@@ -81,7 +87,19 @@ const RegisterPage = () => {
                             value={password}
                             onChange={(e) => dispatch(setPassword(e.target.value))}
                         />
+                       
+
                     </div>
+               
+               <div>
+                
+                <select value={role} onChange={e=>dispatch(setRole(e.target.value))}>
+                    <option>option</option>
+                <option>user</option>
+                <option>tutor</option>
+                <option>admin</option>
+                </select>
+               </div>
                     <div className="flex items-center justify-between">
                         <button
                             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
@@ -90,6 +108,8 @@ const RegisterPage = () => {
                             Register
                         </button>
                     </div>
+                   
+
                 </form>
                 <p className="text-center text-gray-600 text-md mt-3">
                     Already have an account? <Link to="/login" className="text-blue-500 hover:text-blue-700">Login</Link>

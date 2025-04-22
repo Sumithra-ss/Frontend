@@ -6,6 +6,7 @@ export const registerSlice = createSlice({
         name: "",
         email: "",
         password: "",
+        role:""
     },
     reducers: {
         setName: (state, action) => {
@@ -17,13 +18,17 @@ export const registerSlice = createSlice({
         setPassword: (state, action) => {
             state.password = action.payload;
         },
+        setRole: (state, action) => {
+            state.role = action.payload;
+        },
     },
 });
 
-export const { setName, setEmail, setPassword } = registerSlice.actions;
+export const { setName, setEmail, setPassword,setRole } = registerSlice.actions;
 
 export const selectName = (state) => state.register.name;
 export const selectEmail = (state) => state.register.email;
 export const selectPassword = (state) => state.register.password;
+export const selectRole = (state) => state.register.role;
 
 export default registerSlice.reducer;

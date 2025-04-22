@@ -4,7 +4,7 @@ import Appoinment from '../../services/Appoinment'
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { assets } from "../../assets/assets";
-import { selectName,selectSubject,selectSlotDate,selectSlotTime,selectACtive1,setName,setSubject,setSlotDate,setsSlotTime, setsACive1} from "../../redux/features/auth/CreateAppoinment";
+import { selectName, selectSlotTime, selectSubject, setSlotDate,setName ,setSubject,setsSlotTime,} from "../../redux/features/auth/CreateAppoinment";
 import { toast } from "react-toastify";
 import GetAlltutors from "../../services/GetAlltutors";
 import { data } from "react-router";
@@ -15,11 +15,17 @@ import {FaStar} from "react-icons/fa"
 import { useNavigate } from "react-router"; 
 import { Link } from "react-router-dom"
 import Dashboard from './DashboardPage';
-import { useSelector } from 'react-redux';
+import { useSelector,useDispatch } from 'react-redux';
 const Details = () => {
     const navigate=useNavigate()
-     const {ID}=useParams();
-     const [Aname]=useSelector(selectName)
+     //const {ID}=useParams();
+     const ID=""
+     const tutorname=useSelector(selectName)
+     const subject=useSelector(selectSubject)
+     const sDate=useSelector(setSlotDate)
+     const sTime=useSelector(selectSlotTime)
+     const dispatch = useDispatch();
+    console.log(tutorname,subject,sDate,sTime)
     const [products,setProduct]=useState([''])
     const [currentValue, setCurrentValue] = useState(0);
     const [hoverValue, setHoverValue] = useState(undefined);
@@ -60,6 +66,9 @@ const Details = () => {
        const {Appoinment}  = await response.json(); // Add await before response.json()
        console.log(Appoinment);
        setProduct(Appoinment)
+       dispatch(setSubject(Appoinment[0].data.Subject))
+       dispatch(setSlotDate(Appoinment.data.Date))
+       dispatch(setName(Appoinment[0].data.tutorname))
       console.log(Appoinment)
      } catch (err) {
        console.log("Error:", err);
@@ -86,6 +95,8 @@ const Details = () => {
             try {
    
 console.log(ID)
+let item="Active:cancelled"
+console.log(item)
    
     fetch(`http://localhost:3001/updateAppdet/${ID}`,{
         method:'POST',
@@ -93,10 +104,11 @@ console.log(ID)
            'Accept':'application/json' ,
            'Content-Type':'application/json'
         },
-        body:JSON.stringify(Aname)
+        body:JSON.stringify(item)
 
     }).then((result) =>[
         result.json().then((resp)=>{
+
             console.log(resp)
         })
     ])
@@ -108,26 +120,26 @@ console.log(ID)
     
         }
         const EditAppointment = async (ID) => {
+            console.log(tutorname,subject)
 
             try {
    
-                let item=[]
-                item=["tutorname:"]
-console.log(ID)
+                console.log(ID)         
+console.log(tutorname)
    
-    fetch(`http://localhost:3001/updateAppdetails/${ID}`,{
-        method:'POST',
-        headers:{
-           'Accept':'application/json' ,
-           'Content-Type':'application/json'
-        },
-        body:JSON.stringify("cancelled")
+    // fetch(`http://localhost:3001/updateAppdetails/${ID}`,{
+    //     method:'POST',
+    //     headers:{
+    //        'Accept':'application/json' ,
+    //        'Content-Type':'application/json'
+    //     },
+    //     body:JSON.stringify({tutorname:tutorname,Subject:subject,Date:sDate,Time:sTime})
 
-    }).then((result) =>[
-        result.json().then((resp)=>{
-            console.log(resp)
-        })
-    ])
+    // }).then((result) =>[
+    //     result.json().then((resp)=>{
+    //         console.log(resp)
+    //     })
+    // ])
     
             } catch (error) {
                 console.log(error)
@@ -155,33 +167,33 @@ console.log(ID)
                                                                 id="username"
                                                                 type="text"
                                                                 placeholder="Email"
-                                                                value={item.tutorname}
-                                                                //onChange={(e) => dispatch(setName(e.target.value))}
+                                                                defaultValue={tutorname}
+                                                                onChange={(e) => dispatch(setName(e.target.value))}
                                                                
                                                             />
                                                              <input
                                                                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                                                 id="username"
                                                                 type="text"
-                                                                value={item.Subject}
-                                                               // onChange={(e) => dispatch(setEmail(e.target.value))}
+                                                                defaultValue={item.Subject}
+                                                                onChange={(e) => dispatch(setSubject(e.target.value))}
                                                                
                                                             />
                                                                 <input
                                                                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                                                 id="username"
                                                                 type="text"
-                                                                value={item.Date} 
+                                                                defaultValue={item.Date} 
                                                                 
-                                                              //onChange={(e) => dispatch(setEmail(e.target.value))}
+                                                              onChange={(e) => dispatch(setSlotDate(e.target.value))}
                                                                
                                                             />
                                                              <input
                                                                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                                                 id="username"
                                                                 type="text"
-                                                                value={item.Time}
-                                                               // onChange={(e) => dispatch(setEmail(e.target.value))}
+                                                                defaultValue={item.Time}
+                                                               onChange={(e) => dispatch(setsSlotTime(e.target.value))}
                                                                
                                                             />
                                     
@@ -193,7 +205,7 @@ console.log(ID)
                                 <button onClick={() => {navigate("/dashboard/Razorpay/")}} className='text-[#696969] sm:min-w-48 py-2 border rounded hover:bg-gray-100 hover:text-white transition-all duration-300 flex items-center justify-center'><img className='max-w-20 max-h-5' src={assets.razorpay_logo} alt="" /></button>
                                {!item.cancelled && <button onClick={() => cancelAppointment(item._id)} className='text-[#696969] sm:min-w-48 py-2 border rounded hover:bg-red-600 hover:text-white transition-all duration-300'>Cancel appointment</button>}
                                { <button onClick={() => EditAppointment(item._id)} className='text-[#696969] sm:min-w-48 py-2 border rounded hover:bg-red-600 hover:text-white transition-all duration-300'>Edit appointment</button>}
-                               { <button onClick={() => EditAppointment(item._id)} className='text-[#696969] sm:min-w-48 py-2 border rounded hover:bg-red-600 hover:text-white transition-all duration-300'>Book Online class</button>}
+                        {/* / { <button onClick={() => EditAppointment(item._id)} className='text-[#696969] sm:min-w-48 py-2 border rounded hover:bg-red-600 hover:text-white transition-all duration-300'>Book Online</button>} */}
                                 </div>
                             </div>
                             

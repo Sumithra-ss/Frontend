@@ -1,10 +1,18 @@
 import updinstance from "./updinstance";
 
 const GetAlltutors = {
-    getTutors: async () => {
-        return await updinstance.get("http://localhost:3001/gettutor");
+   
+    createtutorsetails: async (data) => {
+    return await updinstance.post("/createtutorsetails",data);
+        
     },
-    
+    Gettutorbyid: async (data) => {
+        return await updinstance.get("/getTutorbyid/:id",data);
+        
+
+    },
+   
 }
 
-export default GetAlltutors;
+export default GetAlltutors
+;

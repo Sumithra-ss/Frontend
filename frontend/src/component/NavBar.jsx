@@ -4,28 +4,53 @@ import { Link } from 'react-router'
 import { useState } from 'react'
 const getNavigation = (user) => {
   const [token,setToken]=useState(true)
+  const [userName,setUsername]=useState(true)
   if (!user) {
       return [
           { name: 'Home', href: '/', current: true },
-          { name: 'Register', href: '/register', current: false },
+          { name: 'Register', href: 'register', current: false },
           { name: 'Login', href: '/login', current: false },
+        
       ]
   } else if (user) {
     console.log(user)
+    console.log(user.role)
       if (user.role === 'admin') {
           return [
             
               { name: 'dashboard', href: '', current: false },
+              { name: 'User', href: '/admin/dashbaord/getuser', current: false },
               { name: 'Logout', href: '/admin/dashbaord/logout', current: false },
           ]
       } else if (user.role === 'user') {
+       
+      console.log(user.email)
           return [
            
               { name: 'Profile', href: '/dashboard/Profile', current: false },
            { name: 'Logout', href: '/dashboard/logout', current: false },
            { name: 'Appoinment', href: '/dashboard/Appoinment', current: false },
-           { name: 'MyAppoinment', href: '/dashboard/Appoinmentdetail', current: false },
+           { name: 'MyAppoinment', href: '/dashboard/Appoinment', current: false },
+           { name: 'Class', href: '/dashboard/onlineclass1', current: false },
+           { name: 'Class', href: '/dashboard/Myonlineclass', current: false },
+           { name: 'EditAppoinment', href: '/dashboard/editappoinment', current: false },
+           
           ]
+      } else if (user.role==='tutor'){
+        return [
+          
+          
+          { name: 'tutor', href: '/tutor/tutorProfile', current: false },
+          { name: 'Upload Recording', href: '/tutor/upload', current: false },
+          {name: 'createtutor', href: '/tutor/creatlesson', current: false},
+          {name: 'Feedback & Review', href: '/tutor/FeedbackReview', current: false},
+          {name: 'Editlesson', href: '/tutor/editlesson', current: false},
+          {name: 'Paymenthistory', href: 'tutor/payment', current: false},
+          
+          
+          
+          
+        ]
       }
   }
 
@@ -77,12 +102,14 @@ function NavBar({user})
                     {item.name}
                   </Link>
                 ))}
+               
                    {
                                     user && (
                                         <p
                                             className='text-blue-300 px-3 py-2 text-sm font-medium'
                                         >{user.email}</p>
                                     )
+                                    
                                 }
               </div>
             </div>

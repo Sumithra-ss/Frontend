@@ -2,7 +2,7 @@
 import Appoinment from '../../services/Appoinment';
 import Dashboard from '../user/DashboardPage'
 import { assets } from '../../assets/assets'
-
+import { Link } from "react-router";
 
 import { selectName,selectSubject,selectSlotDate,selectSlotTime,selectACtive1,setName,setSubject,setSlotDate,setsSlotTime, setsACive1} from "../../redux/features/auth/CreateAppoinment";
 import React, { useContext, useEffect, useState } from 'react'
@@ -21,7 +21,7 @@ const Myappinment = () => {
     const subject = useSelector(selectSubject);
      const slotDate = useSelector(selectSlotDate);
     const slottime = useSelector(selectSlotTime);
-    
+    const [products,setProduct]=useState()
     const Active = useSelector(selectACtive1);
      const [tutorinfo, setTutorinfo] = useState({})
     const [docSlots, setDocSlots] = useState([])
@@ -35,11 +35,10 @@ const Myappinment = () => {
    
   
     //console.log(name,subject,Active)
-    useEffect(()=>
-        {
-            getTutor()
-        }
-        ,[ID])
+    useEffect(()=>{
+        getTutor()
+           },[ID])
+           
        
         useEffect(()=>
             {
@@ -51,13 +50,24 @@ const Myappinment = () => {
                    console.log(docSlots)
                 }
                 ,[docSlots])
-                console.log(tutorinfo.Name)
-        const getTutor = async () => {
-            const response=await axios.get(`http://localhost:3001/getTutorbyid/${ID}`)
-            setTutorinfo(response.data.post)
-           
-          };
-          console.log(tutorinfo)
+             
+              async function getTutor() {
+                
+                try {
+                    console.log('Hellow')
+                  const response = await fetch(`http://localhost:3001/getTutordetbyid/67fff15dd174f3726012b831`); // Add a valid URL here
+                  const data  = await response.json(); // Add await before response.json()
+                  console.log(data);
+                 setProduct(data)
+                 setTutorinfo(data)
+                
+          
+                } catch (err) {
+                  console.log("Error:", err);
+                }
+        
+              }
+       
           const getAvailableSolts = async () => {
 
             setDocSlots([])
@@ -117,6 +127,7 @@ const Myappinment = () => {
                 setDocSlots(prev => ([...prev, timeSlots]))
     
             }
+
     
         }
 
@@ -126,7 +137,7 @@ const Myappinment = () => {
           },[docSlots])
           const bookAppointment = async () => {
 
-            let item=[]
+            
             const date = docSlots[slotIndex][0].datetime
     
             let day = date.getDate()
@@ -174,12 +185,22 @@ const Myappinment = () => {
                 <div className='flex-1 border border-[#ADADAD] rounded-lg p-8 py-7 bg-white mx-2 sm:mx-0 mt-[-80px] sm:mt-0'>
 
                     {/* ----- Doc Info : name, degree, experience ----- */}
-
-                    <p className='flex items-center gap-2 text-3xl font-medium text-gray-700'>{tutorinfo.name} <img className='w-5' src={assets.verified_icon} alt="" /></p>
+                    {
+                        products && products.map((item,index)=>(
+                            <div key={index}>
+                                 <p className='flex items-center gap-2 text-3xl font-medium text-gray-700'>{products[0].Name} <img className='w-5' src={assets.verified_icon} alt="" /></p>
                     <div className='flex items-center gap-2 mt-1 text-gray-600'>
-                        <p>{tutorinfo.Qualifications} - {tutorinfo.Expertise}</p>
-                        <button className='py-0.5 px-2 border text-xs rounded-full'>{tutorinfo.Experience}</button>
+                        <p>{products[0].subject}</p>
+                       
                     </div>
+
+                            </div>
+
+                        )
+                        )
+                    }
+
+                   
 
                     {/* ----- Doc About ----- */}
                    

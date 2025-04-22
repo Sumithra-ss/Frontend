@@ -6,6 +6,7 @@ import { assets } from "../../assets/assets";
 import Rating from "react"
 import Typography from 'react'
 import {FaStar} from "react-icons/fa"
+
 const Dashboard = () => {
   
  const [products,setProduct]=useState([''])
@@ -127,7 +128,7 @@ setProduct(results)
          <p>{record.subject}</p> 
          <p>{record.Experience}</p>
          <p>{record.Expertise}</p>
-         <p>{record.Qualification}</p>
+         <p>{record.Qualifications}</p>
          <p>{record.Feedback}</p>
          <div style={styles.stars}>
           {
