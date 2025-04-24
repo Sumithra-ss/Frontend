@@ -52,7 +52,7 @@ const route=[
         },
         {
               path: "/login",
-              element: <LoginPages />
+             element: <LoginPages />
             },
                 {
     
@@ -72,6 +72,7 @@ const route=[
     children:[
       {
         index: true,
+        loader:authLoader,
         element: <Dashboard />
       },
       {
@@ -133,6 +134,11 @@ loader: authLoader,
               loader: authLoader,
               hydrateFallbackElement: <p>Loading profile...</p>
               },
+              {
+                path: "logout",
+                element: <Logout />,
+                 hydrateFallbackElement: <p>Please wait...</p>
+                }
      
     ]
 
@@ -140,7 +146,7 @@ loader: authLoader,
     },
     {
         
-      path: "Appoinment/:ID",
+      path: "dashboard/dashboard/Appoinment/:ID",
      
       element: <Appoinment />
     },
@@ -156,7 +162,12 @@ loader: authLoader,
           loader: authLoader,
       hydrateFallbackElement:<p>Loading...</p>,
         },
-      
+        {
+          inpath: "dashbaord/logout",
+          element:<Profile6/>,
+          loader: authLoader,
+      hydrateFallbackElement:<p>Loading...</p>,
+        },
       ]
     },
     {
@@ -263,152 +274,7 @@ loader: authLoader,
     
   
   ]
-        // {
-        //   path: "feed",
-        //   element: <UserFeed />,
-        //   hydrateFallbackElement: <p>Loading Feed...</p>,
-        //   loader: userFeedLoader
-        // },
-        // {
-        //   path: "create-post",
-        //   element: <CreatePost />
-        // },
-  //        {
-
-  //         path: "Profile",
-  //         element: <ProfilePage />,
-  //         loader: authLoader,
-  //         hydrateFallbackElement: <p>Loading profile...</p>
-  //       },
-        
-  //      
-  //       {
-
-  //         path: "Appoinmentdetail/",
-  //         element: <BookedAppoinment/>,
-  //         loader: authLoader,
-  //         hydrateFallbackElement: <p>Loading profile...</p>
-  //       },
-  //       {
-  //         path: "onlineclass",
-  //         element: <ProfilePage1/>,
-  //         loader: authLoader,
-  //         hydrateFallbackElement: <p>Loading profile...</p>
-
-  //       },
-  //       {
-  //         path: "Myonlineclass",
-  //         element: <Onlinceclass1/>,
-  //         loader: authLoader,
-  //         hydrateFallbackElement: <p>Loading profile...</p>
-
-  //       },
-        
-  //       {
-  //         path: "Feedback",
-  //         element: <Feedback/>,
-  //         loader: authLoader,
-  //         hydrateFallbackElement: <p>Loading profile...</p>
-
-  //       },
-  //       {
-
-  //         // path: "Razorpay/",
-  //         // element: <BookedRazorpayAppoinment/>,
-  //         // loader: authLoader,
-  //         // hydrateFallbackElement: <p>Loading profile...</p>
-  //       },
        
-  //     ]
-    
-  // },
-  // {
-  //   path:"/", 
-  //   element:<HomePage />,
-  // },
-  
-  //   
-  //   {
-  //     path: "/admin",
-  //     element: <p>Admin dashboard</p>
-  //     // loader: authLoader,
-  //     // hydrateFallbackElement: <p>Loading profile...</p>
-  //   },
-  //   {
-  //     path: "/admin/dashbaord/logout",
-  //     element: <Logout />,
-  //     hydrateFallbackElement: <p>Please wait...</p>
-  //   },
-  //   {
-  //     path:"admin/",
-  //     element:<AdminWrpper />,
-   
-  //     loader:authLoader,
-  //     hydrateFallbackElement:<p>Please wait...</p>,
-  //     Children:[
-  //        {
-          
-  //           path:"",
-  //           element: <AdminDashboardPage />
-  //         },
-  //         {
-  //           path: "/admin/dashbaord/logout",
-  //           element: <Logout />,
-  //           hydrateFallbackElement: <p>Please wait...</p>
-  //         }
-  //     ]
-      
-  //   },
-  //   {
-  //     path:"/admin/dashboard",
-  //     element:<AdminWrpper />,
-   
-  //     loader:authLoader,
-  //     hydrateFallbackElement:<p>Please wait...</p>,
-  //     Children:[
-  //        {
-  //         path: "",
-  //         element: <AdminDashboard />
-  //         },
-  //         {
-  //           path: "/admin/dashbaord/logout",
-  //           element: <Logout />,
-  //           hydrateFallbackElement: <p>Please wait...</p>
-  //         }
-  //     ]
-      
-  //   },
-  //  
-    
-  //   path: "/tutor/upload",
-  //   element: <ProfilePage1 />,
-  //   loader: authLoader,
-  //   hydrateFallbackElement: <p>Loading...</p>,
-    
-     
-    
-  // },
-  // {
-  //   index: true,
-  //   path: "tutor/gettutor/tutor/tutorProfile/:ID",
-  //   element: <ProfilePage2 />
-  // },
-  // {
-  //  
-  // },
-  // {
-  //   index: true,
-  //   path: "createtutor",
-  //   element: <Profiletutoedit />
-  // },
-  
-  // {
-  //   index: true,
-  //   //path: "tutor/gettutor/tutor/tutorProfile/:ID/createinglesson/:ID",
-  //   path: "createinglesson",
-  //   element: <Profilec />
-  // },
-  //   ]
 
   
   

@@ -12,7 +12,7 @@ const paymenthistory = ()=>{
           
      async function paymenthistory() {
       try {
-       const response = await fetch("http://localhost:3001/getPaymentdet"); // Add a valid URL here
+       const response = await fetch("https://backendconnection-14tc.onrender.com/getPaymentdet"); // Add a valid URL here
        //const response = await fetch("http://localhost:3001/getTutorsdetails?keyword=on"); // Add a valid URL here
         const {paymentdetail}  = await response.json(); // Add await before response.json()
         console.log(paymentdetail);

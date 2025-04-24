@@ -24,7 +24,7 @@ console.log(user)
     async function updateFeedback() {
       console.log(feedack)
       
-              fetch(`http://localhost:3001/updateTutordetbyid/67fff15dd174f3726012b831`,{
+              fetch(`https://backendconnection-14tc.onrender.com/updateTutordetbyid/67fff15dd174f3726012b831`,{
                   method:'PUT',
                   headers:{
                      'Accept':'application/json' ,
@@ -37,7 +37,7 @@ console.log(user)
                   result.json().then((resp)=>{
                       console.log(resp)
                       
-                       //navigate('/dashboard');
+                       navigate('/dashboard');
                   })
               ])
                   

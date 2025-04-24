@@ -6,9 +6,10 @@ import { assets } from "../../assets/assets";
 import Rating from "react"
 import Typography from 'react'
 import {FaStar} from "react-icons/fa"
-import { useNavigate } from "react-router"; 
+import { useNavigate,useLoaderData } from "react-router"; 
 import { Link } from "react-router-dom"
 import MyAppoinment from '../user/Myappinment'
+
 const Dashboard = (setResult1) => {
   const navigate=useNavigate()
  const [products,setProduct]=useState([''])
@@ -18,6 +19,7 @@ const Dashboard = (setResult1) => {
  const [data,setData]=useState([])
  const [input,setInput]=useState([])
  const [result,setResult]=useState([])
+ const Navigate=useNavigate()
  const handleClick = value => {
   setCurrentValue(value)
 }
@@ -33,6 +35,12 @@ const handleMouseLeave = () => {
   updateProfile()
  },[])
   
+ const  user = useLoaderData();
+ // const user=null
+console.log(user);
+
+     
+
 
  const colors = {
   orange: "#FFBA5A",
@@ -43,7 +51,7 @@ const handleMouseLeave = () => {
       
  async function updateProfile() {
   try {
-   const response = await fetch("http://localhost:3001/gettutor"); // Add a valid URL here
+   const response = await fetch("https://backendconnection-14tc.onrender.com/getTutorsdetailsbyfeedback"); // Add a valid URL here
    //const response = await fetch("http://localhost:3001/getTutorsdetails?keyword=on"); // Add a valid URL here
     const {tutor}  = await response.json(); // Add await before response.json()
     console.log(tutor);
@@ -57,21 +65,20 @@ const handleMouseLeave = () => {
 
      const stars=Array(5).fill(0)
 
-  const fetchData = (value)=>{
-   fetch("http://localhost:3001/gettutor")
-   //fetch("http://localhost:3001/getTutorsdetailsbyfeedback")
-    .then((response)=>response.json())
-    .then((json)=>{
-      console.log(json)
-const results =json.tutor.filter((user)=>{
-  return (
-    value && user && user.subject.toLowerCase().includes(value)
-  )
-})
-setProduct(results)
-setResult1(results)
+  const fetchData = async (value)=>{
 
-    })
+    console.log(value)
+   const response=await fetch(`https://backendconnection-14tc.onrender.com/getTutorsdetailsbyDashboard/${value}`)
+   const tutor  = await response.json(); 
+// const results =json.tutor.filter((user)=>{
+//   return (
+//     value && user && user.subject.toLowerCase().includes(value)
+//   )
+// })
+setProduct(tutor)
+
+
+    
   }
   const handleChange=(value)=>{
     setInput(value);
@@ -132,17 +139,17 @@ setResult1(results)
       products && products.map((record,index) => (
         
         <div className='border border-blue-200 rounded-xl overflow-hidden cursor-pointer hover:translate-y-[-10px] transition-all duration-500 ' key={index}>
-             < Link to ={`dashboard/Appoinment/${record._id}`}>{record._id}</Link>
+             < Link to ={`dashboard/Appoinment/${record._id}`}>subject:{record.subject}</Link>
+             <p>Experience:{record?.tutorid?.Experience }</p>
           <div className="card-image">
         
  <img className='' src={assets.l1}/>
           </div>
-          console.log({record._id})
-         <p className='text-gray-900 text-lg font-medium'>{record.subject}</p> 
-         <p>{record.Expertise }</p>
-         <p>{record.Expertise}</p>
-         <p>{record.Qualification}</p>
-         <p>{record.Feedback}</p>
+      
+      
+         
+         <p>Qualifications:{record?.tutorid?.Qualifications}</p>
+         <p>Feedback:{record.Feedback}</p>
          <div style={styles.stars}>
 
           {
@@ -150,7 +157,7 @@ setResult1(results)
               return(
 <FaStar key={index}
 size={24}
-color={(record.Rating || 5) > index ? colors.orange : colors.grey}
+color={(record?.Rating || 5) > index ? colors.orange : colors.grey}
 
 style={{
   marginRight: 10,

@@ -1,11 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router";
+
 import {useState,useEffect
 
 } from "react"
 import { selectEmail, selectPassword, setEmail, setPassword } from "../redux/features/auth/loginSlice";
 import authServices from "../services/authServices";
 import { toast } from "react-toastify";
+
 
 const LoginPage = () => {
 
@@ -22,19 +24,29 @@ console.log( email, password);
         authServices.login({ email, password })
             .then((response) => {
                 toast.success(response.data.message);
-
+console.log(response)
                 // clear the form
                // dispatch(setEmail(''));
                 dispatch(setPassword(''));
 
                 // navigate the user to the dashboard page
+
                 setTimeout(() => {
                      
                     
-                           // updateProfile()
+                    console.log(response.data.user.role)
+                    if (response.data.user.role =='tutor') {
                        
-                      
-                   navigate('/dashboard');
+                        navigate('/tutor/tutorProfile');
+                    }
+                    else
+                    
+                    {
+                        navigate('/dashboard');
+                   }
+                                
+                             
+                  
                 }, 500);
             })
             .catch((error) => {
@@ -46,16 +58,22 @@ console.log( email, password);
     async function updateProfile() {
         try {
            
-          const response = await fetch(`http://localhost:3001/getuserbtid/${email}`); // Add a valid URL here
+          const response = await fetch(`https://backendconnection-14tc.onrender.com/${email}`); // Add a valid URL here
           const {post}  = await response.json(); // Add await before response.json()
           console.log(post);
           setProduct(post)
           setRecords(post)
           if (post.role=="tutor"){
 navigate('/tutor/gettutor');
-          }else
+          }
+          else if (post.role=="user")
           {
             navigate('/dashboard');
+          }
+          else if(post.role=="admin")
+          {
+
+            navigate('/admin/dashbaord/getuser');
           }
           
         } catch (err) {
@@ -65,8 +83,8 @@ navigate('/tutor/gettutor');
 
     return (
         <div className="container mt-5 text-center">
-            <h1 className="text-4xl text-gray-800">Login to Chattr!</h1>
-            <h4 className="text-xl text-gray-600">A simple chat application</h4>
+            <h1 className="text-4xl text-gray-800">Login to LMS!</h1>
+            <h4 className="text-xl text-gray-600">A simple LMS application</h4>
 
             <div className="max-w-2xl mx-auto mt-5 bg-white shadow-md p-5 rounded-lg overflow-hidden border border-gray-200 px-5 py-5">
                 <form onSubmit={handleLogin}>

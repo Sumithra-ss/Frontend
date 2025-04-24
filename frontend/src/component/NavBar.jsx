@@ -18,7 +18,7 @@ const getNavigation = (user) => {
       if (user.role === 'admin') {
           return [
             
-              { name: 'dashboard', href: '', current: false },
+              { name: 'dashboard', href: '/admin/dashbaord/getuser', current: false },
               { name: 'User', href: '/admin/dashbaord/getuser', current: false },
               { name: 'Logout', href: '/admin/dashbaord/logout', current: false },
           ]
@@ -29,10 +29,7 @@ const getNavigation = (user) => {
            
               { name: 'Profile', href: '/dashboard/Profile', current: false },
            { name: 'Logout', href: '/dashboard/logout', current: false },
-           { name: 'Appoinment', href: '/dashboard/Appoinment', current: false },
-           { name: 'MyAppoinment', href: '/dashboard/Appoinment', current: false },
            { name: 'Class', href: '/dashboard/onlineclass1', current: false },
-           { name: 'Class', href: '/dashboard/Myonlineclass', current: false },
            { name: 'EditAppoinment', href: '/dashboard/editappoinment', current: false },
            
           ]
@@ -153,7 +150,7 @@ function NavBar({user})
                 </MenuItem>
                 <MenuItem>
                   <Link
-                  to="/dashboard/Appoinment"
+                  to="/dashboard/editappoinment"
 
                     href="#"
                     className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden"

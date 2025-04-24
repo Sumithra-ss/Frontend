@@ -17,7 +17,7 @@ const GetAlltutor = () => {
  
  async function updateProfile() {
     try {
-      const response = await fetch("http://localhost:3001/gettutor"); // Add a valid URL here
+      const response = await fetch("https://backendconnection-14tc.onrender.com/gettutor"); // Add a valid URL here
       const {tutor}  = await response.json(); // Add await before response.json()
       console.log(tutor);
       setProduct(tutor)
@@ -35,8 +35,8 @@ const GetAlltutor = () => {
 
       products && products.map((record,index) => (
         
-        <div key={index}>
-            < Link to ={`tutor/tutorProfile/${record._id}`}>Book Online Class{record._id}</Link>
+        <div className='border border-blue-200 rounded-xl overflow-hidden cursor-pointer hover:translate-y-[-10px] transition-all duration-500 ' key={index}>
+            < Link to ={`tutor/tutorProfile/${record._id}`}>Book Online Class</Link>
           <div className="card-image">
           <img className='' src={assets.l1}/>
           </div>

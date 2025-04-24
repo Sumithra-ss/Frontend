@@ -1,27 +1,33 @@
 import { useState ,useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useParams } from 'react-router-dom';
 import { selectName, selectSlotDate, selectSubject,setName,setSlotDate,setSubject } from "../../redux/features/auth/CreateAppoinment";
 import editappoinment from "./editappoinment";
 import { toast } from "react-toastify";
 
 import { Link, useNavigate } from "react-router";
 const Appoinmenteditbyid = () => {
-    const [products,setProducts]=useState()
+    const [products,setProducts]=useState('')
     const [tutorname,setTutorName]=useState()
-    const [subj,setSubj]=useState()
-    const [selectedDate,setSelectedDate]=useState()
+    const [subj,setSubj]=useState('')
+    const [selectedDate,setDaate]=useState('')
     const dispatch = useDispatch();
     const navigate=useNavigate()
+    const {ID} =useParams()
+    console.log(ID)
       useEffect(()=>{
            updateProfile()
           },[])
          
           async function updateProfile() {
              try {
-               const response = await fetch("http://localhost:3001/getAppoinmentBYdet/67ea6ab3cce531bedfcd305f"); // Add a valid URL here
+               const response = await fetch(`https://backendconnection-14tc.onrender.com/getAppoinmentBYdet/${ID}`); // Add a valid URL here
                const data = await response.json(); // Add await before response.json()
                console.log(data);
                setProducts(data)
+               setTutorName(data[0].tutorname)
+               setSubj(data[0].Subject)
+               setDaate(data[0].Date)
             //    console.log(data[0].tutorname)
             //     dispatch(setName(data[0].tutorname))
             //     dispatch(setSubject(data[0].Subject))
@@ -40,8 +46,8 @@ const Appoinmenteditbyid = () => {
                       //  console.log(ID)         
         console.log(tutorname)
            
-            fetch(`http://localhost:3001/updateAppdetails/67ea6ab3cce531bedfcd305f`,{
-                method:'POST',
+            fetch(`https://backendconnection-14tc.onrender.com/updateAppdetails/${ID}`,{
+                method:'PUT',
                 headers:{
                    'Accept':'application/json' ,
                    'Content-Type':'application/json'
@@ -55,7 +61,7 @@ const Appoinmenteditbyid = () => {
                 })
             ])
             setTimeout(() => {
-                navigate('/dashboard');
+                navigate('/dashboard/editappoinment');
           }, 500);
 
             
@@ -69,7 +75,7 @@ const Appoinmenteditbyid = () => {
             
     return(
         <div className="container mt-5 text-center">
-            <h1>anything</h1>
+            <h3 className="text-blue-400">Appoinment Details</h3>
             <div>
             {
 <div className="mb-4">
@@ -83,7 +89,7 @@ const Appoinmenteditbyid = () => {
                                             type="text"
                                             placeholder="Name"
                                             defaultValue={item.tutorname}
-                                            onChange={(e) => (setSubject(e.target.value))}
+                                            onChange={(e) => (setTutorName(e.target.value))}
                                         />
                                          <input
                                           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"

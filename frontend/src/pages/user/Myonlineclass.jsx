@@ -20,7 +20,7 @@ const Myonlineclass =()=>{
     async function updateProfile() {
         try {
          // const response = await fetch("http://localhost:3001/gettutor"); // Add a valid URL here
-         const response = await fetch("http://localhost:3001/getuploaddetails"); // Add a valid URL here
+         const response = await fetch("https://backendconnection-14tc.onrender.com/getuploaddetails"); // Add a valid URL here
           const {tutor}  = await response.json(); // Add await before response.json()
           console.log(tutor);
           setProduct(tutor)
@@ -53,37 +53,35 @@ const Myonlineclass =()=>{
       console.log(records)
     return(
         <div >
-          <h1 className="py-2 max-w-2xl mx-auto mt-5" > Play Record and Feeddback</h1>
-             <div className= "grid grid-cols-4 gap-4 max-w-2xl mx-auto mt-5 bg-white shadow-md p-5 rounded-lg overflow-hidden border border-gray-200 px-5 py-5"> 
+          <h5 className="py-2 max-w-xl mx-auto mt-5 font-semibold" > Play Record and Feeddback</h5>
+             <div className= " max-w-2xl mx-auto mt-5 bg-white shadow-md p-5 rounded-lg overflow-hidden border border-gray-200 px-5 py-5"> 
 
              {
-                records && records.map((item,index)=>(
-                    <div key={index} className=" grid grid-cols-4 gap-4 ">
-                      <div className=" grid grid-cols-4 gap-4 ">
-                      <label>Subject:{item.subject}</label>
-                     
-                        {/* <input
-                            className="shadow appearance-none border rounded w-full py-2 px-25 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                           id="name"
-                           type="text"
-                            placeholder="Name"
-                            value={item.Name}
-                             //onChange={(e) => dispatch(setName(e.target.value))}
-                            /> */}
-                        
-
-                      
-                       
-        
-                        </div>
-                        <div className="flex h-30 items-end">
-                        <button  onClick={playRecording} type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medum rounded-lg text-sm px-15 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Play Recording</button>
-                        <button onClick={()=>navToPage('/dashboard/Feedback')} type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medum rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Feedback submit</button>
-                        </div>
-
-                    </div>
-                ))
-             }
+  records &&
+    records.map((item, index) => (
+      <div key={index} className="grid grid-cols-4 gap-4">
+        <div className="col-span-4 bg-cyan-900 py-5">
+          <label className="text-white py-7" >Subject: {item.subject}</label>
+        </div>
+<div className="col-span-4 flex h-30 items-end gap-4">
+          <button
+            onClick={playRecording}
+            type="button"
+            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+          >
+            Play Recording
+          </button>
+<button
+            onClick={() => navToPage('/dashboard/Feedback')}
+            type="button"
+            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+          >
+            Feedback Submit
+          </button>
+</div>
+      </div>
+    ))
+}
            
            
                 

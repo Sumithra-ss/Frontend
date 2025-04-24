@@ -41,7 +41,7 @@ const handleMouseLeave = () => {
       
  async function updateProfile() {
   try {
-    const response = await fetch("http://localhost:3001/gettutor"); // Add a valid URL here
+    const response = await fetch("https://backendconnection-14tc.onrender.com/gettutor"); // Add a valid URL here
     const {tutor}  = await response.json(); // Add await before response.json()
     console.log(tutor);
     setProduct(tutor)
@@ -55,7 +55,7 @@ const handleMouseLeave = () => {
      const stars=Array(5).fill(0)
 
   const fetchData = (value)=>{
-    fetch("http://localhost:3001/gettutor")
+    fetch("https://backendconnection-14tc.onrender.com/gettutor")
     .then((response)=>response.json())
     .then((json)=>{
 const results =json.tutor.filter((user)=>{

@@ -44,7 +44,7 @@ const tutorProfile = () =>{
        dispatch(setPassword(data[0].password))
        dispatch(setExper(data[0].Experience))
        dispatch(setExpert(data[0].Expertise))
-       dispatch(setQualificat(data[0].Qualification))
+       dispatch(setQualificat(data[0].Qualifications))
         } catch (err) {
           console.log("Error:", err);
         }
@@ -70,9 +70,9 @@ const tutorProfile = () =>{
        
 
         }
-        console.log(name)
+      
        
-        fetch(`http://localhost:3001/updateTutorbyid/67fe579a60dbd8c84b255d79`,{
+        fetch(`https://backendconnection-14tc.onrender.com/updateTutorbyid/${ID}`,{
             method:'PUT',
             headers:{
                'Accept':'application/json' ,
@@ -83,35 +83,18 @@ const tutorProfile = () =>{
     
         }).then((result) =>[
             result.json().then((resp)=>{
-                console.log(resp)
-                toast.success(resp.data.message);
+               
+            
                  //navigate('/dashboard');
+                 setTimeout(() => {
+                    navigate("/tutor/tutorProfile");
+                }, 500);
             })
         ])
             
 
     }
-    const createtutor = (e)=>{
-        e.preventDefault();
-        console.log(name,email,password,experi,expetetise,Qualification)
-       
-        tutor.Createtutor({Name:name,email:email,password:password,Experience:experi,Expertise:expetetise,Qualifications:Qualification})
-         .then((response) => {
-                        toast.success(response.data.message);
-        
-                     
-        
-                        // navigate the user to the dashboard page
-                        setTimeout(() => {
-                              //navigate('/dashboard');
-                        }, 500);
-                    })
-                    .catch((error) => {
-                        toast.error(error.response.data.message);
-                    });
-            
-
-    }
+   
     return(
         <div className="container mt-5 text-center">
                    <h1 className="text-4xl text-gray-800">Tutor Profile</h1>
@@ -202,12 +185,12 @@ products && products.map((post,index) => (
                            </div>
                           
                            <div className="grid grid-cols-4">
-                               <button onClick={createtutor}
+                               {/* <button onClick={createtutor}
                                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                                    type="submit"
                                >
                                    Create tutor
-                               </button>
+                               </button> */}
                                <div>
                                <button onClick={editTutordetails}
                                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 w-60 rounded focus:outline-none focus:shadow-outline"
@@ -218,7 +201,7 @@ products && products.map((post,index) => (
                                </div>
                                <div>
                                <button 
-                               onClick={() => navigate("createinglesson/67fe579a60dbd8c84b255d79")}
+                               onClick={() => navigate("createinglesson/${post._id}")}
                                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 w-60 rounded focus:outline-none focus:shadow-outline"
                                    type="submit"
                                >
@@ -227,7 +210,7 @@ products && products.map((post,index) => (
                                </div>
                                <div>
                                <button 
-                               onClick={() => navigate("FeedbackReview/67fe579a60dbd8c84b255d79")}
+                               onClick={() => navigate("FeedbackReview/${post._id}")}
                                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 w-60 rounded focus:outline-none focus:shadow-outline"
                                    type="submit"
                                >

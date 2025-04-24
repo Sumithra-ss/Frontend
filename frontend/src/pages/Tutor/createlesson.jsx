@@ -9,7 +9,7 @@ import { useParams } from 'react-router-dom';
 import { useState } from "react";
 const createlesson = () => {
     
-   
+   const navigate=useNavigate()
     const dispatch = useDispatch();
     const[subject,setSubjects]=useState()
     const [avil,setAvail]=useState()
@@ -30,7 +30,9 @@ console.log(ID)
         
                         // navigate the user to the dashboard page
                         setTimeout(() => {
-                              //navigate('/dashboard');
+                          
+                                navigate("/tutor/tutorProfile");
+                           
                         }, 500);
                     })
                     .catch((error) => {

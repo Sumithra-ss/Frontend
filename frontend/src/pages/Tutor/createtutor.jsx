@@ -25,7 +25,7 @@ const {ID}=useParams();
            
         async function gettutorbuid() {
             try {
-              const response = await fetch("http://localhost:3001/getTutorbyid/67f77fe3ee97a79c4308008c"); // Add a valid URL here
+              const response = await fetch("https://backendconnection-14tc.onrender.com/getTutorbyid/67f77fe3ee97a79c4308008c"); // Add a valid URL here
               const {post}  = await response.json(); // Add await before response.json()
               console.log(post);
              
@@ -36,27 +36,7 @@ const {ID}=useParams();
               console.log("Error:", err);
             }
     
-    //          const createtutor = (e)=>{
-    //     e.preventDefault();
-    //     console.log(name,email,password,experi,expetetise,Qualification)
-       
-    //     tutor.Createtutor({Name:name,email:email,password:password,Experience:experi,Expertise:expetetise,Qualifications:Qualification})
-    //      .then((response) => {
-    //                     toast.success(response.data.message);
-        
-                     
-        
-    //                     // navigate the user to the dashboard page
-    //                     setTimeout(() => {
-    //                           //navigate('/dashboard');
-    //                     }, 500);
-    //                 })
-    //                 .catch((error) => {
-    //                     toast.error(error.response.data.message);
-    //                 });
-            
-
-    // }
+    
           }
           const createtutor = (e)=>{
             e.preventDefault();
@@ -70,8 +50,10 @@ const {ID}=useParams();
             
                             // navigate the user to the dashboard page
                             setTimeout(() => {
-                                navigate("/dashboard");
-                            }, 500);
+                          
+                                navigate("/tutor/tutorProfile");
+                           
+                        }, 500);
                         })
                         .catch((error) => {
                             toast.error(error.response.data.message);

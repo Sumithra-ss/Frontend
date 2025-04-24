@@ -18,7 +18,7 @@ const editRole = () => {
               
          async function paymenthistory() {
           try {
-           const response = await fetch(`http://localhost:3001/getuserdetbyid/${ID}`); // Add a valid URL here
+           const response = await fetch(`https://backendconnection-14tc.onrender.com/getuserdetbyid/${ID}`); // Add a valid URL here
            //const response = await fetch("http://localhost:3001/getTutorsdetails?keyword=on"); // Add a valid URL here
             const resp  = await response.json(); // Add await before response.json()
             console.log(resp);
@@ -34,7 +34,7 @@ const editRole = () => {
                    try {
           
                       
-           fetch(`http://localhost:3001/updatePost/${ID}`,{
+           fetch(`https://backendconnection-14tc.onrender.com/updatePost/${ID}`,{
                method:'PUT',
                headers:{
                   'Accept':'application/json' ,

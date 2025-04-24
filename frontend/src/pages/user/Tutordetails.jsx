@@ -10,7 +10,7 @@ const Tutordetails = () => {
 
  async function updateProfile() {
     try {
-      const response = await fetch("http://localhost:3001/gettutor"); // Add a valid URL here
+      const response = await fetch("https://backendconnection-14tc.onrender.com/gettutor"); // Add a valid URL here
       const {tutor}  = await response.json(); // Add await before response.json()
       console.log(tutor);
       setProduct(tutor)
@@ -37,11 +37,11 @@ const Tutordetails = () => {
              <img className='' src={assets.l1}/>
                       </div>
                       
-                     <p>{record.subject}</p> 
-                     <p>{record.Experience}</p>
-                     <p>{record.Expertise}</p>
-                     <p>{record.Qualification}</p>
-                     <p>{record.Feedback}</p>
+                     <p>subject:{record.subject}</p> 
+                     <p>Experience:{record.Experience}</p>
+                     <p>Expertise:{record.Expertise}</p>
+                     <p>Qualification:{record.Qualifications}</p>
+                     <p>Feedback{record.Feedback}</p>
                      <div style={styles.stars}>
                       {
                         stars.map((_,index)=>{

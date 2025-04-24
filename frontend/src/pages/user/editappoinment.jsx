@@ -12,7 +12,7 @@ const editappoinment = () =>{
      
       async function updateProfile() {
          try {
-           const response = await fetch("http://localhost:3001/getAppoinmentdet?keyword=Active"); // Add a valid URL here
+           const response = await fetch("https://backendconnection-14tc.onrender.com/getAppoinmentdet?keyword=Active"); // Add a valid URL here
            const Appoinment = await response.json(); // Add await before response.json()
            console.log(Appoinment.Appoinment);
            setProduct(Appoinment.Appoinment)
@@ -26,7 +26,7 @@ const editappoinment = () =>{
     
     return (
         <div className="w-300 grid grid-cols-auto gap-4 pt-5 gap-y-6 px-3 sm:px-0 justify-center">
-            <h1>Edit Appoinment</h1>
+            <h1 className="text-yellow-500 text-2xl">Edit Appoinment</h1>
             
             {
                 
