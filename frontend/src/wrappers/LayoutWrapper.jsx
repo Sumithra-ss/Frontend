@@ -11,6 +11,7 @@ const LayoutWrapper = () => {
     return (
         <>
             <NavBar/>,
+            <ToastProvider />
                 <Outlet />
             
             
