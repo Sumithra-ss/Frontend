@@ -5,7 +5,7 @@ import { assets } from '../../assets/assets'
 import { Link } from "react-router";
 
 import { selectName,selectSubject,selectSlotDate,selectSlotTime,selectACtive1,setName,setSubject,setSlotDate,setsSlotTime, setsACive1} from "../../redux/features/auth/CreateAppoinment";
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { useDispatch, useSelector } from "react-redux";
