@@ -1,11 +1,11 @@
 
 import React, {  useEffect,useState } from 'react'
 import {FaStar} from "react-icons/fa"
-import { useLoaderData } from 'react-router-dom'
+import { useParams } from 'react-router-dom';
 const ReviewFeedback = () =>
 {
     const [products,setProduct]=useState([])
-    const ID=useLoaderData()
+    const {ID}=useParams();
     console.log(ID)
       useEffect(()=>{
             gettutorbuid()
