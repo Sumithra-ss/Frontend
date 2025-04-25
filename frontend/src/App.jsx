@@ -5,19 +5,19 @@ import HomePage from "./pages/HomePages";
 import LoginPages from "./pages/LoginPages";
 import ToastProvider from "./component/ToastProvider"
 import RegisterPage from "./pages/RegisterPage";
-import LayoutWrapper from "./wrappers/LayoutWrapper";
+ import LayoutWrapper from "./wrappers/LayoutWrapper";
 import { Children } from "react";
 import { Provider } from "react-redux";
 import store from "./redux/app/store";
 import DashboardWrappers from "./wrappers/DashboardWrappers"
-import Logout from "./component/Logout";
+ import Logout from "./component/Logout";
 import authLoader from "./loaders/unit/authLoader";
-import AdminWrpper from "./wrappers/AdminWrpper";
-import AdminDashboard from "./wrappers/AdminWrpper";
+import AdminWrpper from "./wrappers/AdminWrapper";
+import AdminDashboard from "./wrappers/AdminWrapper";
 import Dashboard from "./pages/user/DashboardPage";
 import Layout from "./wrappers/LayoutWrapper"
 import ProfilePage4 from "./wrappers/tutorWrapper";
-import AdminDashboardPage from "./pages/admin/AdminDashboardPage"
+//import AdminDashboardPage from "./pages/admin/AdminDashboardPage"
 import ProfilePage from "./pages/user/ProfilePage";
 import Appoinment from "./pages/user/Myappinment";
 import BookedAppoinment from "./pages/user/Appoinment"
@@ -43,7 +43,7 @@ const route=[
     
       path: "/",
       element: <Layout />,
-      //loader: authLoader,
+      loader: authLoader,
       hydrateFallbackElement: <p>Loading...</p>,
       children: [
         {
@@ -67,7 +67,7 @@ const route=[
     {
       path:"/dashboard",
       element:<DashboardWrappers/>,
-   // loader:authLoader,
+   loader:authLoader,
     hydrateFallbackElement:<p>Loading...</p>,
     children:[
       {
@@ -186,7 +186,7 @@ const route=[
     {
       path:"/tutor",
       element:<ProfilePage4 />,
-    //  loader: authLoader,
+     loader: authLoader,
       hydrateFallbackElement:<p>Loading...</p>,
       children: [
         {
@@ -273,7 +273,7 @@ const route=[
 
     
   
-  ]
+ ]
        
 
   
@@ -295,10 +295,10 @@ future:{
 const App = ()=>{
 return <>
  <Provider store={store}>
- <ToastProvider >
+ <ToastProvider/ >
 
   <RouterProvider router={router} />
-  </ToastProvider >
+  
  </Provider>
       
    
