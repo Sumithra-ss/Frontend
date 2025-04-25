@@ -1,6 +1,5 @@
 import {  Outlet} from "react-router";
 import NavBar from "../component/NavBar";
-import ToastProvider from "../component/ToastProvider";
 
 const LayoutWrapper = () => {
            
@@ -12,7 +11,7 @@ const LayoutWrapper = () => {
     return (
         <>
             <NavBar/>,
-            <ToastProvider />
+            
                 <Outlet />
             
             
