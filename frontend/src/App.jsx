@@ -43,7 +43,7 @@ const route=[
     
       path: "/",
       element: <Layout />,
-      loader: authLoader,
+      //loader: authLoader,
       hydrateFallbackElement: <p>Loading...</p>,
       children: [
         {
@@ -67,7 +67,7 @@ const route=[
     {
       path:"/dashboard",
       element:<DashboardWrappers/>,
-    loader:authLoader,
+   // loader:authLoader,
     hydrateFallbackElement:<p>Loading...</p>,
     children:[
       {
@@ -86,34 +86,34 @@ const route=[
 
         path: "Profile",
        element: <ProfilePage />,
-loader: authLoader,
+//loader: authLoader,
    hydrateFallbackElement: <p>Loading profile...</p>
   },
   {
 
      path: "Appoinment",
      element: <BookedAppoinment />,
-     loader: authLoader,
+    // loader: authLoader,
       hydrateFallbackElement: <p>Loading profile...</p>
      },
      {
       path: "onlineclass1",
       element: <Onlinceclass1/>,
-       loader: authLoader,
+    //   loader: authLoader,
       hydrateFallbackElement: <p>Loading profile...</p>
     
       },
       {
          path: "Feedback",
        element: <Feedback/>,
-       loader: authLoader,
+     //  loader: authLoader,
       hydrateFallbackElement: <p>Loading profile...</p>
       
          },
          {
           path: "editappoinment",
         element: <Profilec3/>,
-        loader: authLoader,
+      //  loader: authLoader,
        hydrateFallbackElement: <p>Loading profile...</p>
        
           },
@@ -123,7 +123,7 @@ loader: authLoader,
         path: "editappoinment/Appoinmenteditbyid/:ID",
            
           element: <Profilec4/>,
-          loader: authLoader,
+        //  loader: authLoader,
          hydrateFallbackElement: <p>Loading profile...</p>
          
             },
@@ -131,7 +131,7 @@ loader: authLoader,
 
               path: "Razorpay/",
               element: <Razorpay/>,
-              loader: authLoader,
+            //  loader: authLoader,
               hydrateFallbackElement: <p>Loading profile...</p>
               },
               {
@@ -153,19 +153,19 @@ loader: authLoader,
     {
       path:"/admin",
       element:<AdminWrpper/>,
-      loader: authLoader,
+     // loader: authLoader,
       hydrateFallbackElement:<p>Loading...</p>,
       children:[
         {
           index: true,
           element:<Profile6/>,
-          loader: authLoader,
+       //   loader: authLoader,
       hydrateFallbackElement:<p>Loading...</p>,
         },
         {
           inpath: "dashbaord/logout",
           element:<Profile6/>,
-          loader: authLoader,
+      //    loader: authLoader,
       hydrateFallbackElement:<p>Loading...</p>,
         },
       ]
@@ -173,20 +173,20 @@ loader: authLoader,
     {
       path:"admin/dashbaord/getuser",
       element:<Profile6/>,
-      loader: authLoader,
+     // loader: authLoader,
   hydrateFallbackElement:<p>Loading...</p>,
     },
     {
       path:"editRole/:ID",
       element:<Profile7/>,
-      loader: authLoader,
+    //  loader: authLoader,
   hydrateFallbackElement:<p>Loading...</p>,
      },
    
     {
       path:"/tutor",
       element:<ProfilePage4 />,
-      loader: authLoader,
+    //  loader: authLoader,
       hydrateFallbackElement:<p>Loading...</p>,
       children: [
         {
@@ -205,14 +205,14 @@ loader: authLoader,
 
                  path: "tutorProfile",
                 element: <Profiletuto />,
-               loader: authLoader,
+        //       loader: authLoader,
                hydrateFallbackElement: <p>Loading profile...</p>
              },
              {
              
                path: "creatlesson",
             element: <Profiletutoedit />,
-            loader: authLoader,
+         //   loader: authLoader,
             hydrateFallbackElement: <p>Loading profile...</p>
              },
 
@@ -220,7 +220,7 @@ loader: authLoader,
              
               path: "FeedbackReview",
            element: <Review />,
-           loader: authLoader,
+          // loader: authLoader,
            hydrateFallbackElement: <p>Loading profile...</p>
             },
             {
@@ -232,7 +232,7 @@ loader: authLoader,
             {
               path:"editlesson",
               element:< Profilec1/>,
-              loader: authLoader,
+           //   loader: authLoader,
               hydrateFallbackElement: <p>Loading profile...</p>
 
             },
@@ -243,7 +243,7 @@ loader: authLoader,
             {
               path:"tutor/payment",
               element:< Profile5/>,
-              loader: authLoader,
+           //   loader: authLoader,
               hydrateFallbackElement: <p>Loading profile...</p>
 
             },
