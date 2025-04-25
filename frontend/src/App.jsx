@@ -8,7 +8,7 @@ import RegisterPage from "./pages/RegisterPage";
 import LayoutWrapper from "./wrappers/LayoutWrapper";
 import { Children } from "react";
 import { Provider } from "react-redux";
-import store from "./redux/App/store";
+import store from "./redux/app/store";
 import DashboardWrappers from "./wrappers/DashboardWrappers"
 import Logout from "./component/Logout";
 import authLoader from "./loaders/unit/authLoader";
