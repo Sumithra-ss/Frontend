@@ -39,11 +39,16 @@ console.log(response)
                        
                         navigate('/tutor/tutorProfile');
                     }
-                    else
+                    else if (response.data.user.role =='user')
                     
                     {
                         navigate('/dashboard');
                    }
+                   else 
+                    {
+                        navigate('/admin/dashbaord/getuser');
+                    }
+                   
                                 
                              
                   

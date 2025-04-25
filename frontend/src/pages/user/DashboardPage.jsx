@@ -51,7 +51,7 @@ console.log(user);
       
  async function updateProfile() {
   try {
-   const response = await fetch("https://backendconnection-14tc.onrender.com/getTutorsdetailsbyfeedback"); // Add a valid URL here
+   const response = await fetch("http://localhost:3001/getTutorsdetailsbyfeedback"); // Add a valid URL here
    //const response = await fetch("http://localhost:3001/getTutorsdetails?keyword=on"); // Add a valid URL here
     const {tutor}  = await response.json(); // Add await before response.json()
     console.log(tutor);
@@ -68,7 +68,7 @@ console.log(user);
   const fetchData = async (value)=>{
 
     console.log(value)
-   const response=await fetch(`https://backendconnection-14tc.onrender.com/getTutorsdetailsbyDashboard/${value}`)
+   const response=await fetch(`http://localhost:3001/getTutorsdetailsbyDashboard/${value}`)
    const tutor  = await response.json(); 
 // const results =json.tutor.filter((user)=>{
 //   return (
