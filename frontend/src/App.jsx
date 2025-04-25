@@ -295,9 +295,10 @@ future:{
 const App = ()=>{
 return <>
  <Provider store={store}>
- <ToastProvider />
-  
+ <ToastProvider >
+
   <RouterProvider router={router} />
+  </ToastProvider >
  </Provider>
       
    
