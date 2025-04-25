@@ -1,7 +1,7 @@
 
 import axios from "axios";
 import { useEffect,useRef, useState } from "react"
-import { useLoaderData } from "react-router-dom";
+
 import { toast } from "react-toastify"
 import uploaddet from '../../services/uploaddetails'
 import { useNavigate } from "react-router-dom";
@@ -16,7 +16,7 @@ const upload = () => {
     const preset_key = "i0yzs8df"
 const [subjects,setSubject]=useState('')
 const [URL,setURL]=useState()
-   const {user}=useLoaderData()
+   
 
     const handleFileChange = ({e, dropped=false}) =>{
         const tempFile = dropped === true ? e : e.target.files[0]
@@ -84,7 +84,7 @@ const [URL,setURL]=useState()
     const createtutor = (e)=>{
         e.preventDefault();
         
-        uploaddet.Createtutor({tutorname:user.name,subject:subjects,url:res.secure_url})
+        uploaddet.Createtutor({tutorname:"",subject:subjects,url:res.secure_url})
          .then((response) => {
                         toast.success(response.data.message);
         

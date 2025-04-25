@@ -6,7 +6,7 @@ import { assets } from "../../assets/assets";
 import Rating from "react"
 import Typography from 'react'
 import {FaStar} from "react-icons/fa"
-import { useNavigate,useLoaderData } from "react-router"; 
+import { useNavigate } from "react-router"; 
 import { Link } from "react-router-dom"
 import MyAppoinment from '../user/Myappinment'
 
@@ -35,9 +35,6 @@ const handleMouseLeave = () => {
   updateProfile()
  },[])
   
- const  user = useLoaderData();
- // const user=null
-console.log(user);
 
      
 

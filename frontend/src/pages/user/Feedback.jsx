@@ -5,18 +5,18 @@ import { selectFeedback,setFeedback } from "../../redux/features/auth/tutordetai
 
 import { useNavigate } from "react-router-dom";
 import { selectEmail } from "../../redux/features/auth/loginSlice";
-import { useLoaderData } from "react-router";
+
 const Feedback = ()=>
 {
     const feedback=useSelector(selectFeedback)
     const [feedack,setfeedback]=useState(null)
     const [rating,setRating]=useState(null)
     const [ratecolor,setcolor]=useState((null))
- const { user } = useLoaderData();
-console.log(user)
 
- const UserId1=user
- console.log(UserId1.name)
+
+
+ 
+
     const dispatch = useDispatch();
     const navigate=useNavigate()
     const EEmail=useSelector(selectEmail)
@@ -30,7 +30,7 @@ console.log(user)
                      'Accept':'application/json' ,
                      'Content-Type':'application/json'
                   },
-                  body:JSON.stringify({studentName:UserId1.name,Feedback:feedack,Rating:rating})
+                  body:JSON.stringify({studentName:"",Feedback:feedack,Rating:rating})
           
           
               }).then((result) =>[

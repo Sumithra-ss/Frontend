@@ -1,6 +1,6 @@
 import React from "react"
 import { useState } from "react";
-import { useLoaderData } from "react-router";
+
 //import {fileinput} from "flowbite-react"
 
  import { toast } from "react-toastify";

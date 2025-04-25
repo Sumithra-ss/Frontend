@@ -1,5 +1,5 @@
 import { useState,useEffect } from "react";
-import { useLoaderData } from "react-router";
+
 import { useDispatch, useSelector } from "react-redux";
  import { toast } from "react-toastify";
  
@@ -12,11 +12,7 @@ const [products,setProduct]=useState()
 const [name,setName]=useState()
 const [email ,setEmail]=useState()
 
-    const { user } = useLoaderData();
-    let Name=user.name
-    
-    const UserId1=user
-    let Email=user.email
+   
     
     useEffect(()=>{
         updateProfile()

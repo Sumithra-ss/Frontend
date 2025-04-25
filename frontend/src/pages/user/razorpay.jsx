@@ -9,17 +9,12 @@ import {FaStar} from "react-icons/fa"
 import { useNavigate } from "react-router"; 
 import { Link, useRevalidator } from "react-router-dom"
 import MyAppoinment from '../user/Myappinment'
-import {  Outlet ,useLoaderData} from "react-router";
+import {  Outlet } from "react-router";
 import payment from "../../services/payment";
 const Razorpay = () => {
 const [amount,setAmount] = useState('');
-const  {user} = useLoaderData();
-    // const user=null
- console.log(user.name);
-    // const password = useSelector(selectPassword);
 
-    // const dispatch = useDispatch();
-    // const navigate = useNavigate();
+   
 
 const handleSubmit = (e) => {
  e.preventDefault();
@@ -54,7 +49,7 @@ if (amount==="")
           var pay = new window.Razorpay(options);
           pay.open();
            
-          payment.createpaymentdet({studentName:user.name,Amount:amount,Mode:"Online"})
+          payment.createpaymentdet({studentName:"",Amount:amount,Mode:"Online"})
           .then((response) => {
                          toast.success(response.data.message);
          
