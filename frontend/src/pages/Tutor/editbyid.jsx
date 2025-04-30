@@ -24,7 +24,7 @@ const editbyid = () => {
        
     async function gettutorbuid() {
         try {
-          const response = await fetch(`https://backendconnection-14tc.onrender.com/getTutordetbyid/${ID}`); // Add a valid URL here
+          const response = await fetch(`http://localhost:3001/getTutordetbyid/${ID}`); // Add a valid URL here
           const data  = await response.json(); // Add await before response.json()
           console.log(data);
          setProducts(data)
@@ -42,7 +42,7 @@ const editbyid = () => {
             console.log(ID)         
 
 
-fetch(`https://backendconnection-14tc.onrender.com/updateTutordetailsbyid/${ID}`,{
+fetch(`http://localhost:3001/updateTutordetailsbyid/${ID}`,{
     method:'PUT',
     headers:{
        'Accept':'application/json' ,
@@ -52,17 +52,15 @@ fetch(`https://backendconnection-14tc.onrender.com/updateTutordetailsbyid/${ID}`
 
 }).then((result) =>[
     result.json().then((resp)=>{
-        console.log(resp)
-        toast.success(resp);
+          toast.success(resp.message);
     })
 ])
 setTimeout(() => {
-  navigate("/editlesson");
+  navigate("/tutor/editlesson");
 }, 500);
 
         } catch (error) {
-            console.log(error)
-            toast.error(error.message)
+               toast.error(error.message)
         }
 
     }
@@ -74,7 +72,7 @@ setTimeout(() => {
           console.log(ID)         
 
 
-fetch(`https://backendconnection-14tc.onrender.com/deletetoturdet/${ID}`,{
+fetch(`http://localhost:3001/deletetoturdet/${ID}`,{
   method:'PUT',
   headers:{
      'Accept':'application/json' ,
@@ -84,7 +82,7 @@ fetch(`https://backendconnection-14tc.onrender.com/deletetoturdet/${ID}`,{
 
 }).then((result) =>[
   result.json().then((resp)=>{
-      console.log(resp)
+      toast.success(resp.message);
       setTimeout(() => {
                           
                                 navigate("/tutor/editlesson");
@@ -143,7 +141,7 @@ fetch(`https://backendconnection-14tc.onrender.com/deletetoturdet/${ID}`,{
                 <label className='block text-gray-700 text-sm font-bold mb-2' >Availability:</label>
                 <input
                                                            className="shadow appearance-none border rounded w-70 py-2 px-9 text-gray-700 leading-tight focus:outline-none focus:shadow-outline "
-                                                           id="name"
+                                                           id="availability"
                                                            type="text"
                                                            placeholder="Name"
                                                           

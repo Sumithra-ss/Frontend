@@ -16,18 +16,21 @@ const ReviewFeedback = () =>
             
           };
           const stars=Array(5).fill(0)
+          
 
-async function gettutorbuid() {
+
+
+      async function getTutorID() {
         try {
-          const response = await fetch("https://backendconnection-14tc.onrender.com/getTutorsdetailsbyfeedback/67fff15dd174f3726012b831"); // Add a valid URL here
+         const response = await fetch("http://localhost:3001/gettutoridbyname/React"); // Add a valid URL here
+         //const response = await fetch("http://localhost:3001/getTutorsdetails?keyword=on"); // Add a valid URL here
           const {tutor}  = await response.json(); // Add await before response.json()
           console.log(tutor);
           setProduct(tutor)
-          
+          setRecords(tutor)
         } catch (err) {
           console.log("Error:", err);
         }
-
       }
       return(
         <div  className='flex flex-col items-center gap-4 my-16 text-gray-900 md:mx-10 bg-blue'>

@@ -25,6 +25,7 @@
     "axios": "^1.8.4",
     "base-64": "^1.0.0",
     "cloudinary-core": "^2.13.1",
+    "dateformat": "^5.0.3",
     "eslint-config-love": "^119.0.0",
     "flowbite": "^3.1.2",
     "flowbite-react": "^0.11.7",

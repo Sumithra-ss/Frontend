@@ -36,7 +36,7 @@ import Profilec3 from "./pages/user/editappoinment"
 import Profilec4 from "./pages/user/Appoinmenteditbyid"
 import Profile5 from "./pages/Tutor/paymenthistory"
 import Profile6 from "./pages/admin/userdet"
-
+import Profile10 from "./pages/Tutor/uploaddetails";
 import Profile7 from "./pages/admin/editRole"
 const route=[
   {
@@ -99,14 +99,15 @@ const route=[
      {
       path: "onlineclass1",
       element: <Onlinceclass1/>,
-    //   loader: authLoader,
+    loader: authLoader,
       hydrateFallbackElement: <p>Loading profile...</p>
     
       },
+
       {
-         path: "Feedback",
+         path: "Feedback/:ID/:tutID",
        element: <Feedback/>,
-     //  loader: authLoader,
+     loader: authLoader,
       hydrateFallbackElement: <p>Loading profile...</p>
       
          },
@@ -192,27 +193,31 @@ const route=[
         {
           index: true,
           element: <ProfilePage1 />
-          //   element: <ProfilePage1 />
+          // element: <ProfilePage1 />
         },
         {
-          path: "upload",
+          path: "upload/:ID",
             element: <ProfilePage1 />,
             loader: authLoader,
             
-        }
+        },
+      {
+        path:"uploaddetails",
+        element:<Profile10/>
+      }
        ,
        {
 
                  path: "tutorProfile",
                 element: <Profiletuto />,
-        //       loader: authLoader,
+        loader: authLoader,
                hydrateFallbackElement: <p>Loading profile...</p>
              },
              {
              
                path: "creatlesson",
             element: <Profiletutoedit />,
-         //   loader: authLoader,
+         loader: authLoader,
             hydrateFallbackElement: <p>Loading profile...</p>
              },
 
@@ -220,19 +225,20 @@ const route=[
              
               path: "FeedbackReview",
            element: <Review />,
-          // loader: authLoader,
+          loader: authLoader,
            hydrateFallbackElement: <p>Loading profile...</p>
             },
             {
               index:true,
               path:"tutor/tutorProfile/tutor/tutorProfile/ID/FeedbackReview/ID",
+              
               element:<Feedback />
             }
             ,
             {
               path:"editlesson",
               element:< Profilec1/>,
-           //   loader: authLoader,
+           loader: authLoader,
               hydrateFallbackElement: <p>Loading profile...</p>
 
             },
@@ -241,9 +247,15 @@ const route=[
               path:"tutor/editlesson/editappoinmentbyid/ID"
             },
             {
+              index:true,
+              path:"tutor/tutorProfile/tutor/tutorProfile/ID/FeedbackReview/ID",
+              element:<Feedback />
+              
+            },
+            {
               path:"tutor/payment",
               element:< Profile5/>,
-           //   loader: authLoader,
+            // loader: authLoader,
               hydrateFallbackElement: <p>Loading profile...</p>
 
             },
@@ -265,6 +277,15 @@ const route=[
       //tutor/tutorProfile/tutor/tutorProfile/67fe579a60dbd8c84b255d79
       element: <Profilec />
     },
+    {
+      index: true,
+      path: "tutor/tutorProfile/tutor/tutorProfile/:ID/FeedbackReview/:ID",
+   
+     
+      
+      element: <Review />
+    },
+    
 {
   index: true,
   path: "tutor/editlesson/editappoinmentbyid/:ID",

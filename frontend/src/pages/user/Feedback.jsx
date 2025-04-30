@@ -2,8 +2,8 @@ import { FaStar } from "react-icons/fa"
 import { useState,useEffect  } from "react"
 import { useDispatch, useSelector } from "react-redux";
 import { selectFeedback,setFeedback } from "../../redux/features/auth/tutordetailSlice";
-
-import { useNavigate } from "react-router-dom";
+import { useParams } from 'react-router-dom';
+import { useNavigate,useLoaderData } from "react-router-dom";
 import { selectEmail } from "../../redux/features/auth/loginSlice";
 
 const Feedback = ()=>
@@ -12,25 +12,29 @@ const Feedback = ()=>
     const [feedack,setfeedback]=useState(null)
     const [rating,setRating]=useState(null)
     const [ratecolor,setcolor]=useState((null))
+  
 
-
-
+    const {ID,tutID}=useParams();
+    console.log(ID)
  
 
     const dispatch = useDispatch();
     const navigate=useNavigate()
     const EEmail=useSelector(selectEmail)
+    const  {user} = useLoaderData();
+    console.log(tutID)
     console.log(EEmail)
+    
     async function updateFeedback() {
       console.log(feedack)
       
-              fetch(`https://backendconnection-14tc.onrender.com/updateTutordetbyid/67fff15dd174f3726012b831`,{
+              fetch(`http://localhost:3001/updateTutordetbyid/${tutID}`,{
                   method:'PUT',
                   headers:{
                      'Accept':'application/json' ,
                      'Content-Type':'application/json'
                   },
-                  body:JSON.stringify({studentName:"",Feedback:feedack,Rating:rating})
+                  body:JSON.stringify({studentName:user.name,Feedback:feedack,Rating:rating})
           
           
               }).then((result) =>[
@@ -42,6 +46,8 @@ const Feedback = ()=>
               ])
                   
 }
+
+
 return(
     <div >
         <label>How do you Rate Mentor skill</label>

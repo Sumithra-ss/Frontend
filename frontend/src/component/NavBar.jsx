@@ -5,6 +5,7 @@ import { useState } from 'react'
 const getNavigation = (user) => {
   const [token,setToken]=useState(true)
   const [userName,setUsername]=useState(true)
+  console.log(user)
   if (!user) {
       return [
           { name: 'Home', href: '/', current: true },
@@ -28,17 +29,18 @@ const getNavigation = (user) => {
           return [
            
               { name: 'Profile', href: '/dashboard/Profile', current: false },
+              { name: 'Book Appoinment', href: '/dashboard', current: false },
            { name: 'Logout', href: '/dashboard/logout', current: false },
            { name: 'Class', href: '/dashboard/onlineclass1', current: false },
            { name: 'EditAppoinment', href: '/dashboard/editappoinment', current: false },
            
           ]
-      } else if (user.role==='tutor'){
+      } else if (user==='tutor'){
         return [
           
           
           { name: 'tutor', href: '/tutor/tutorProfile', current: false },
-          { name: 'Upload Recording', href: '/tutor/upload', current: false },
+          { name: 'Upload Recording', href: '/tutor/uploaddetails', current: false },
           {name: 'createtutor', href: '/tutor/creatlesson', current: false},
           {name: 'Feedback & Review', href: '/tutor/FeedbackReview', current: false},
           {name: 'Editlesson', href: '/tutor/editlesson', current: false},

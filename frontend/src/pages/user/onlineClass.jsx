@@ -14,7 +14,7 @@ const onlineClass = () => {
 
         async function gettutorbuid() {
             try {
-              const response = await fetch("https://backendconnection-14tc.onrender.com/getuploaddetails"); // Add a valid URL here
+              const response = await fetch("http://localhost:3001/getuploaddetails"); // Add a valid URL here
               const tutor = await response.json(); // Add await before response.json()
                            setProducts(tutor);
               
@@ -55,4 +55,4 @@ const onlineClass = () => {
 }
 
 
-export default onlineClass
+export default onlineClass;

@@ -72,7 +72,7 @@ const tutorProfile = () =>{
         }
       
        
-        fetch(`https://backendconnection-14tc.onrender.com/updateTutorbyid/${ID}`,{
+        fetch(`http://localhost:3001/updateTutorbyid/${ID}`,{
             method:'PUT',
             headers:{
                'Accept':'application/json' ,
@@ -201,7 +201,7 @@ products && products.map((post,index) => (
                                </div>
                                <div>
                                <button 
-                               onClick={() => navigate("createinglesson/${post._id}")}
+                               onClick={() => navigate(`createinglesson/${post._id}`)}
                                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 w-60 rounded focus:outline-none focus:shadow-outline"
                                    type="submit"
                                >
@@ -209,14 +209,15 @@ products && products.map((post,index) => (
                                </button>
                                </div>
                                <div>
-                               <button 
-                               onClick={() => navigate("FeedbackReview/${post._id}")}
+                               {/* <button 
+                               onClick={() => navigate(`FeedbackReview/${post._id}`)}
                                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 w-60 rounded focus:outline-none focus:shadow-outline"
                                    type="submit"
                                >
                                   Feedback and Review
-                               </button>
+                               </button> */}
                                </div>
+                               
                            </div>
                        </form>
                        

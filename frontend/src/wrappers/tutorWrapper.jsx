@@ -4,23 +4,24 @@ import NavBar from "../component/NavBar";
 
 const tutorWrapper = ()=>
 {
-//     const  user = useLoaderData();
-//     const Navigate=useNavigate()
-//     // const user=null
-//  console.log(user.role);
+    const  {user} = useLoaderData();
+    const Navigate=useNavigate()
+    // const user=null
+ console.log(user.role);
  
-//      if (!user) {
-//          return <Navigate to="/login" />
-//      }
+    //  if (!user) {
+    //      return <Navigate to="/login" />
+    //  }
  
-//      if (user.user.role == 'tutor') {
-//          return <Navigate to="/tutor/tutorProfile" />
-//      }
+    //  if (user.role == 'tutor') {
+    //      return <Navigate to="/tutor/tutorProfile" />
+    //  }
  
      return (
          <>
              <NavBar
-            />
+            user={user.role} />
+           
              <Outlet />
             <></> 
          </>

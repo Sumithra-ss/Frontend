@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import tutor from "../../services/tutor";
 import { toast } from "react-toastify";
 import { useParams } from 'react-router-dom';
-import { selectEmail, selectexperience, selectexpertise, selectName, selectPassword, selectqualificat, setEmail, setExper, setExpert, setName, setPassword, setQualificat } from "../../redux/features/auth/tutorSlice";
+import { selectEmail, selectexperience, selectexpertise, selectName, selectPassword, selectPrice, selectqualificat,  setEmail, setExper, setExpert, setName, setPassword, setQualificat,setPrice } from "../../redux/features/auth/tutorSlice";
 const edittutor = ()=>{
 const {ID}=useParams();
     const name = useSelector(selectName)
@@ -15,6 +15,7 @@ const {ID}=useParams();
         const experi = useSelector(selectexperience);
         const expetetise = useSelector(selectexpertise);
         const Qualification = useSelector(selectqualificat);
+        const price=useSelector(selectPrice)
         const [products,setProduct]=useState([])
     const dispatch = useDispatch();
     const navigate=useNavigate()
@@ -25,7 +26,7 @@ const {ID}=useParams();
            
         async function gettutorbuid() {
             try {
-              const response = await fetch("https://backendconnection-14tc.onrender.com/getTutorbyid/67f77fe3ee97a79c4308008c"); // Add a valid URL here
+              const response = await fetch("http://localhost:3001/getTutorbyid/67f77fe3ee97a79c4308008c"); // Add a valid URL here
               const {post}  = await response.json(); // Add await before response.json()
               console.log(post);
              
@@ -40,9 +41,39 @@ const {ID}=useParams();
           }
           const createtutor = (e)=>{
             e.preventDefault();
-            console.log(name,email,password,experi,expetetise,Qualification)
-           
-            tutor.Createtutor({Name:name,email:email,password:password,Experience:experi,Expertise:expetetise,Qualifications:Qualification})
+            console.log(name,email,password,experi,expetetise,Qualification,price)
+
+            if (name.trim() === '') {
+                toast.warning("Please Enter Name")
+      return; // Exit the function if the input is empty or contains only whitespace
+    }
+    if (email.trim() === '') {
+        toast.warning("Please Enter email")
+return; // Exit the function if the input is empty or contains only whitespace
+}
+if (password.trim() === '') {
+    toast.warning("Please Enter password")
+return; // Exit the function if the input is empty or contains only whitespace
+}
+if (experi.trim() === '') {
+    toast.warning("Please Enter Experience")
+return; // Exit the function if the input is empty or contains only whitespace
+}
+if (expetetise.trim() === '') {
+    toast.warning("Please Enter Expertise")
+return; // Exit the function if the input is empty or contains only whitespace
+}
+if (Qualification.trim() === '') {
+    toast.warning("Please Enter Qualification")
+return; // Exit the function if the input is empty or contains only whitespace
+}
+if (price.trim() === '') {
+    toast.warning("Please Enter price")
+return; // Exit the function if the input is empty or contains only whitespace
+}
+
+
+            tutor.Createtutor({Name:name,email:email,password:password,Experience:experi,Expertise:expetetise,Qualifications:Qualification,price:price})
              .then((response) => {
                             toast.success(response.data.message);
             
@@ -78,9 +109,9 @@ const {ID}=useParams();
                                </label>
                                <input
                                    className="shadow appearance-none border rounded w-70 py-2 px-5 text-gray-700 leading-tight focus:outline-none focus:shadow-outline "
-                                   id="name"
+                                   id="username"
                                    type="text"
-                                   placeholder="Name"
+                                   placeholder="name"
                                    value={name}
                                  onChange={(e) =>dispatch((setName(e.target.value)))}
                                />
@@ -144,19 +175,18 @@ const {ID}=useParams();
                                                                                value={Qualification}
                                                                                 onChange={(e) => dispatch(setQualificat(e.target.value))}
                                                                             />
-                                                                             {/* <label className="block text-gray-700 text-sm font-bold mb-2 w-25 " htmlFor="password">
+                                                                            <label className="w-15 block text-gray-700 text-sm font-bold mb-2 " htmlFor="password">
                                                                    
-                                                                   Upload Image
+                                                                   Price
                                                                             </label>
                                                                             <input
                                                                                 className="shadow appearance-none border border-red rounded  py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                                                                                id="img"
-                                                                                type="file"
-                                                                            
-                                                                               value={Qualification}
-                                                                             onChange={(fileselector)}
+                                                                                id="Qualification"
+                                                                                type="text"
+                                                                                placeholder="Price"
+                                                                               value={price}
+                                                                                onChange={(e) => dispatch(setPrice(e.target.value))}
                                                                             />
-                                                                             */}
                                </div>
                              
                                <div className="grid grid-cols-4">

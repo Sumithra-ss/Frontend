@@ -11,6 +11,7 @@ const Myonlineclass =()=>{
      useEffect(()=>{
       updateProfile()
      },[])
+    
      const navigate = useNavigate();
 
     const navToPage=(url)=>{
@@ -20,7 +21,7 @@ const Myonlineclass =()=>{
     async function updateProfile() {
         try {
          // const response = await fetch("http://localhost:3001/gettutor"); // Add a valid URL here
-         const response = await fetch("https://backendconnection-14tc.onrender.com/getuploaddetails"); // Add a valid URL here
+         const response = await fetch("http://localhost:3001/getuploaddetails"); // Add a valid URL here
           const {tutor}  = await response.json(); // Add await before response.json()
           console.log(tutor);
           setProduct(tutor)
@@ -29,28 +30,10 @@ const Myonlineclass =()=>{
           console.log("Error:", err);
         }
       }
-      const createtutor = (e)=>{
-        e.preventDefault();
-        console.log(name,email,password,experi,expetetise,Qualification)
-       
-        tutor.Createtutor({Name:name,email:email,password:password,Experience:experi,Expertise:expetetise,Qualifications:Qualification})
-         .then((response) => {
-                        toast.success(response.data.message);
-        
-                     
-        
-                        // navigate the user to the dashboard page
-                        setTimeout(() => {
-                              //navigate('/dashboard');
-                        }, 500);
-                    })
-                    .catch((error) => {
-                        toast.error(error.response.data.message);
-                    });
-            
+      
 
-    }
-      console.log(records)
+      
+
     return(
         <div >
           <h5 className="py-2 max-w-xl mx-auto mt-5 font-semibold" > Play Record and Feeddback</h5>
@@ -72,7 +55,8 @@ const Myonlineclass =()=>{
             Play Recording
           </button>
 <button
-            onClick={() => navToPage('/dashboard/Feedback')}
+           
+           onClick={() =>navigate(`/dashboard/Feedback/${item._id}/${item.tutordetid}`)}
             type="button"
             className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
           >

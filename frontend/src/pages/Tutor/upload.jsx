@@ -4,20 +4,42 @@ import { useEffect,useRef, useState } from "react"
 
 import { toast } from "react-toastify"
 import uploaddet from '../../services/uploaddetails'
-import { useNavigate } from "react-router-dom";
+import { useNavigate ,useLoaderData,useParams} from "react-router-dom";
 const upload = () => {
     const [file, setFile] = useState(null);
     const [progress, setProgress] = useState(0);
     const [status, setStatus] = useState('idle');
     const [res, setRes] = useState(null);
+    const[IDD,setID]=useState()
     const fileRef = useRef(null);
     const allowedFileSize = 1000 * 1024;
     const cloud_name = "dwtgtvxgz"
     const preset_key = "i0yzs8df"
 const [subjects,setSubject]=useState('')
+const [tutorid,setTotutid]=useState('')
+const [products,setProduct]=useState()
 const [URL,setURL]=useState()
-   
+const {ID}=useParams()
+console.log(ID)
+const  {user} = useLoaderData();
+const navigate = useNavigate();
+useEffect(()=>{
+    getuser()
+              },[])
+async function getuser() {
+    try {
+     const response = await fetch("http://localhost:3001/getTutors"); // Add a valid URL here
+     //const response = await fetch("http://localhost:3001/getTutorsdetails?keyword=on"); // Add a valid URL here
+      const {tutor} = await response.json(); // Add await before response.json()
+      console.log(tutor);
+      setProduct(tutor)
+     
+    } catch (err) {
+      console.log("Error:", err);
+    }
+  }
 
+console.log(products)
     const handleFileChange = ({e, dropped=false}) =>{
         const tempFile = dropped === true ? e : e.target.files[0]
         if(!dropped && (!e.target.files || !e.target.files.length > 0)){
@@ -28,6 +50,7 @@ const [URL,setURL]=useState()
         //     return toast.error('Please upload file less than 400kb')
         // }
         try {
+            
             setStatus('Uploading')
             setFile(tempFile);
             const formData = new FormData();
@@ -83,8 +106,12 @@ const [URL,setURL]=useState()
     
     const createtutor = (e)=>{
         e.preventDefault();
-        
-        uploaddet.Createtutor({tutorname:"",subject:subjects,url:res.secure_url})
+        if (subjects.trim() === '') {
+            toast.warning('Please enter subject name')
+            return; 
+          }
+          console.log(tutorid)
+        uploaddet.Createtutor({tutordetid:ID,tutorid:tutorid,tutorname:user.name,subject:subjects,url:res.secure_url})
          .then((response) => {
                         toast.success(response.data.message);
         
@@ -92,7 +119,7 @@ const [URL,setURL]=useState()
         
                         // navigate the user to the dashboard page
                         setTimeout(() => {
-                              //navigate('/dashboard');
+                              navigate('/tutor/uploaddetails');
                         }, 500);
                     })
                     .catch((error) => {
@@ -105,7 +132,31 @@ const [URL,setURL]=useState()
     <div className="container mt-5 text-center h-20">
          <h4 className="text-xl text-gray-600" >Upload Recorded</h4>
         <div className="max-w-2xl mx-auto mt-5 bg-white shadow-md p-5 rounded-lg overflow-hidden border border-gray-200 px-5 py-5">
-        <div class="grid h-56 grid-cols-3 content-start gap-4 ...">
+        <div class="grid h-20 grid-cols-3 content-start gap-4 ...">
+ <label className="w-50">select TutorName</label>
+                                    <select onChange={(e)=>{
+                                        setTotutid(e.target.value)
+                                        
+                                    }}
+                                    className="form-control">
+                                       <option>Select TutorName</option>
+                                        {
+                                          products && products.map((product)=>{
+                                            return(
+                                                
+                                                <option key={product._id}  value={product._id}>{product.Name}
+                                                
+                                                </option>
+                                               
+                                            )
+                                          })
+                                        }
+                                        
+                                    </select>
+                                   
+                                    </div>
+        <div class="grid h-50 grid-cols-3 content-start gap-4 ...">
+            
          <label className="w-25">Subject</label>
            <input
                                       className="shadow appearance-none border rounded w-75 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -116,6 +167,7 @@ const [URL,setURL]=useState()
                                       onChange={(e) => (setSubject(e.target.value))}
                                   />
                                   </div>
+                                 
                                 
         <div>
            

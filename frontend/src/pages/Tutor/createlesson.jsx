@@ -20,8 +20,7 @@ console.log(ID)
     const tutorLesson = (e)=>{
         e.preventDefault();
         
-       console.log(subject,avil)
-     
+       
         authServices.createtutorsetails({subject:subject,availability:avil,tutorid:ID})
          .then((response) => {
                         toast.success(response.data.message);

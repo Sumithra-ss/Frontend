@@ -21,7 +21,7 @@ const Appoinmenteditbyid = () => {
          
           async function updateProfile() {
              try {
-               const response = await fetch(`https://backendconnection-14tc.onrender.com/getAppoinmentBYdet/${ID}`); // Add a valid URL here
+               const response = await fetch(`http://localhost:3001/getAppoinmentBYdet/${ID}`); // Add a valid URL here
                const data = await response.json(); // Add await before response.json()
                console.log(data);
                setProducts(data)
@@ -39,6 +39,19 @@ const Appoinmenteditbyid = () => {
         console.log(products)
         console.log(tutorname)
         const EditAppointment = async () => {
+            if (tutorname.trim() === '') {
+                toast.warning("please enter Name")
+                return; // Exit the function if the input is empty or contains only whitespace
+              }
+              if (subj.trim() === '') {
+                toast.warning("please enter subject")
+                return; // Exit the function if the input is empty or contains only whitespace
+              }
+              if (selectedDate.trim() === '') {
+                toast.warning("please enter Date")
+                return; // Exit the function if the input is empty or contains only whitespace
+              }
+                
                     console.log(tutorname,subj,selectedDate)
         
                     try {
@@ -46,7 +59,7 @@ const Appoinmenteditbyid = () => {
                       //  console.log(ID)         
         console.log(tutorname)
            
-            fetch(`https://backendconnection-14tc.onrender.com/updateAppdetails/${ID}`,{
+            fetch(`http://localhost:3001/updateAppdetails/${ID}`,{
                 method:'PUT',
                 headers:{
                    'Accept':'application/json' ,
@@ -105,7 +118,7 @@ const Appoinmenteditbyid = () => {
                                             type="text"
                                             placeholder="Name"
                                             defaultValue={item.Date}
-                                            onChange={(e) => (setSelectedDate(e.target.value))}
+                                            onChange={(e) => (setDaate(e.target.value))}
                                             />
 
             </div>

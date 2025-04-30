@@ -136,6 +136,7 @@ setProduct(tutor)
       products && products.map((record,index) => (
         
         <div className='border border-blue-200 rounded-xl overflow-hidden cursor-pointer hover:translate-y-[-10px] transition-all duration-500 ' key={index}>
+            <p>Name:{record?.tutorid?.Name }</p> 
              < Link to ={`dashboard/Appoinment/${record._id}`}>subject:{record.subject}</Link>
              <p>Experience:{record?.tutorid?.Experience }</p>
           <div className="card-image">

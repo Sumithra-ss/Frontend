@@ -12,7 +12,7 @@ const editappoinment = () =>{
      
       async function updateProfile() {
          try {
-           const response = await fetch("https://backendconnection-14tc.onrender.com/getAppoinmentdet?keyword=Active"); // Add a valid URL here
+           const response = await fetch("http://localhost:3001/getAppoinmentdet?keyword=Active"); // Add a valid URL here
            const Appoinment = await response.json(); // Add await before response.json()
            console.log(Appoinment.Appoinment);
            setProduct(Appoinment.Appoinment)
