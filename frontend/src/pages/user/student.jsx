@@ -1,6 +1,6 @@
 
     import { useState,useEffect } from "react";
-    
+    import profilestu from "../../services/profile";
     import { useDispatch, useSelector } from "react-redux";
 import { useLoaderData,useNavigate } from "react-router";
      import { toast } from "react-toastify";
@@ -66,32 +66,44 @@ const navigate=useState()
     {
      
        
-        console.log(`Fetching URL: https://backendconnection-14tc.onrender.com/createstudentdetails}`);
+        // console.log(`Fetching URL: https://backendconnection-14tc.onrender.com/createstudentdetails}`);
        
-        fetch(`https://backendconnection-14tc.onrender.com/createstudentdetails`,{
-            method:'POST',
-            headers:{
-               'Accept':'application/json' ,
-               'Content-Type':'application/json'
-            },
-            body:JSON.stringify({Name:name,email:email,Education:educ,conduct:contact,Address:address})
+        // fetch(`https://backendconnection-14tc.onrender.com/createstudentdetails`,{
+        //     method:'POST',
+        //     headers:{
+        //        'Accept':'application/json' ,
+        //        'Content-Type':'application/json'
+        //     },
+        //     body:JSON.stringify({Name:name,email:email,Education:educ,conduct:contact,Address:address})
      
     
-                    // clear the form
+        //             // clear the form
                   
     
                   
-        }).then((result) =>[
-            result.json().then((resp)=>{
-               toast.success(resp.data.message);
+        // }).then((result) =>[
+        //     result.json().then((resp)=>{
+        //        toast.success(resp.data.message);
               
-                              // clear the form
+        //                       // clear the form
                             
-                              setTimeout(() => {
-                                  navigate("/dashboard");
-                              }, 500);
-            })
-        ])
+        //                       setTimeout(() => {
+        //                           navigate("/dashboard");
+        //                       }, 500);
+        //     })
+        // ])
+        profilestu.createstudentdetails({Name:name,email:email,Education:educ,conduct:contact,Address:address})
+        .then((response) => {
+            toast.success(response.data.message);
+
+           
+            setTimeout(() => {
+                navigate("/dashboard");
+            }, 500);
+        })
+        .catch((err) => {
+            toast.error(err.response.data.message);
+        })
        
     }
     
