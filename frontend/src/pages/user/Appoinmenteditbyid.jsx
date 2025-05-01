@@ -21,7 +21,7 @@ const Appoinmenteditbyid = () => {
          
           async function updateProfile() {
              try {
-               const response = await fetch(`http://localhost:3001/getAppoinmentBYdet/${ID}`); // Add a valid URL here
+               const response = await fetch(`https://backendconnection-14tc.onrender.com/getAppoinmentBYdet/${ID}`); // Add a valid URL here
                const data = await response.json(); // Add await before response.json()
                console.log(data);
                setProducts(data)
@@ -57,9 +57,9 @@ const Appoinmenteditbyid = () => {
                     try {
            
                       //  console.log(ID)         
-        console.log(tutorname)
+       
            
-            fetch(`http://localhost:3001/updateAppdetails/${ID}`,{
+            fetch(`https://backendconnection-14tc.onrender.com/updateAppdetails/${ID}`,{
                 method:'PUT',
                 headers:{
                    'Accept':'application/json' ,

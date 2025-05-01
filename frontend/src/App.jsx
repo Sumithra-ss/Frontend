@@ -38,6 +38,7 @@ import Profile5 from "./pages/Tutor/paymenthistory"
 import Profile6 from "./pages/admin/userdet"
 import Profile10 from "./pages/Tutor/uploaddetails";
 import Profile7 from "./pages/admin/editRole"
+import Profile13 from "./pages/user/student"
 const route=[
   {
     
@@ -139,6 +140,12 @@ const route=[
                 path: "logout",
                 element: <Logout />,
                  hydrateFallbackElement: <p>Please wait...</p>
+                },
+                {
+                  path:"student",
+                  element:<Profile13/>,
+                  loader: authLoader,
+                  hydrateFallbackElement: <p>Please wait...</p>
                 }
      
     ]

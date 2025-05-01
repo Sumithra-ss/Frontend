@@ -18,7 +18,7 @@ const editlesson = () =>
    const navigate=useNavigate()
    async function gettutorbuid() {
            try {
-             const response = await fetch("http://localhost:3001/getTutorsdetails"); // Add a valid URL here
+             const response = await fetch("https://backendconnection-14tc.onrender.com/getTutorsdetails"); // Add a valid URL here
              const {tutor}  = await response.json(); // Add await before response.json()
              console.log(tutor);
              setProduct(tutor)

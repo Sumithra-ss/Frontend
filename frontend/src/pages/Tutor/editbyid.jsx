@@ -72,7 +72,7 @@ setTimeout(() => {
           console.log(ID)         
 
 
-fetch(`http://localhost:3001/deletetoturdet/${ID}`,{
+fetch(`https://backendconnection-14tc.onrender.com/deletetoturdet/${ID}`,{
   method:'PUT',
   headers:{
      'Accept':'application/json' ,

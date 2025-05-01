@@ -23,7 +23,7 @@ const [email ,setEmail]=useState()
          },[])
          async function updateProfile() {
             try {
-             const response = await fetch(`http://localhost:3001/getuserbtid${UserId1._id}`); // Add a valid URL here
+             const response = await fetch(`https://backendconnection-14tc.onrender.com/getuserbtid${UserId1._id}`); // Add a valid URL here
              //const response = await fetch("http://localhost:3001/getTutorsdetails?keyword=on"); // Add a valid URL here
               const {tutor}  = await response.json(); // Add await before response.json()
               console.log(tutor);

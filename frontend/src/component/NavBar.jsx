@@ -32,6 +32,8 @@ const getNavigation = (user) => {
               { name: 'Book Appoinment', href: '/dashboard', current: false },
            { name: 'Logout', href: '/dashboard/logout', current: false },
            { name: 'Class', href: '/dashboard/onlineclass1', current: false },
+           { name: 'studentinfo', href: '/dashboard/student', current: false },
+
            { name: 'EditAppoinment', href: '/dashboard/editappoinment', current: false },
            
           ]

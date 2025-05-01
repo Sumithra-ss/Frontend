@@ -12,7 +12,9 @@ import MyAppoinment from '../user/Myappinment'
 
 const Dashboard = (setResult1) => {
   const navigate=useNavigate()
- const [products,setProduct]=useState([''])
+ const [products,setProduct]=useState([])
+ const [tutordet,setTutordet]=useState([])
+ const [filter,setFilter]=useState([''])
  const [currentValue, setCurrentValue] = useState(0);
  const [hoverValue, setHoverValue] = useState(undefined);
  const [records,setRecords]=useState([])
@@ -48,7 +50,7 @@ const handleMouseLeave = () => {
       
  async function updateProfile() {
   try {
-   const response = await fetch("http://localhost:3001/getTutorsdetailsbyfeedback"); // Add a valid URL here
+   const response = await fetch("https://backendconnection-14tc.onrender.com/getTutorsdetailsbyfeedback"); // Add a valid URL here
    //const response = await fetch("http://localhost:3001/getTutorsdetails?keyword=on"); // Add a valid URL here
     const {tutor}  = await response.json(); // Add await before response.json()
     console.log(tutor);
@@ -65,7 +67,7 @@ const handleMouseLeave = () => {
   const fetchData = async (value)=>{
 
     console.log(value)
-   const response=await fetch(`http://localhost:3001/getTutorsdetailsbyDashboard/${value}`)
+   const response=await fetch(`https://backendconnection-14tc.onrender.com/getTutorsdetailsbyDashboard/${value}`)
    const tutor  = await response.json(); 
 // const results =json.tutor.filter((user)=>{
 //   return (
@@ -80,8 +82,18 @@ setProduct(tutor)
   const handleChange=(value)=>{
     setInput(value);
     fetchData(value)
+   
+      
   }
-  console.log(products)
+  
+  // if(tutordet.length===0){
+  //   toast.warning("no data available")
+    
+  // }
+  if (!products || !Array.isArray(products)) {
+    return <p>No products available.</p>;
+    
+}
     return (
 
 
@@ -132,11 +144,12 @@ setProduct(tutor)
       <div className='w-full grid grid-cols-auto gap-4 pt-5 gap-y-6 px-3 sm:px-0'>
        
       {
-
-      products && products.map((record,index) => (
+        
+        
+        products && products.map((record,index) => (
         
         <div className='border border-blue-200 rounded-xl overflow-hidden cursor-pointer hover:translate-y-[-10px] transition-all duration-500 ' key={index}>
-            <p>Name:{record?.tutorid?.Name }</p> 
+            <p>Experience:{record?.tutorid?.Experience }</p> 
              < Link to ={`dashboard/Appoinment/${record._id}`}>subject:{record.subject}</Link>
              <p>Experience:{record?.tutorid?.Experience }</p>
           <div className="card-image">
@@ -165,6 +178,7 @@ style={{
               )
               
             })
+            
           }
 
 

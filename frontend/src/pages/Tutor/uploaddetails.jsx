@@ -11,7 +11,7 @@ useEffect(()=>{
        },[])
     async function gettutorbuid() {
         try {
-          const response = await fetch("http://localhost:3001/getTutorsdetails"); // Add a valid URL here
+          const response = await fetch("https://backendconnection-14tc.onrender.com/getTutorsdetails"); // Add a valid URL here
           const {tutor}  = await response.json(); // Add await before response.json()
           console.log(tutor);
           setProducts(tutor)
@@ -26,8 +26,8 @@ useEffect(()=>{
 
 
         <div className='flex flex-col items-center gap-4 my-16 text-gray-900 md:mx-10'>
-            
-      <div className='w-full grid grid-cols-auto gap-4 pt-5 gap-y-6 px-3 sm:px-0'>
+             <h4 className="text-xl text-gray-600" >Upload Record Details</h4>
+      <div className='w-250 grid grid-cols-auto gap-4 pt-5 gap-y-6 px-3 sm:px-0'>
         <>
        
       {
