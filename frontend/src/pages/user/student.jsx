@@ -88,7 +88,7 @@ const navigate=useState()
 
            
             setTimeout(() => {
-                navigate("/dashboard");
+                navigate('/dashboard');
             }, 500);
         })
         .catch((err) => {
