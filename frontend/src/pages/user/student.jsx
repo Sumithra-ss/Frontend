@@ -65,23 +65,7 @@ const navigate=useState()
     function createstudent()
     {
      
-       if (name.trim() === '') {
-           toast.warning("Please Enter Name")
-       return; 
-       }
-      
-       if (educ.trim() === '') {
-        toast.warning("Please Enter email")
-    return; 
-       }
-       if (contact.trim() === '') {
-        toast.warning("Please Enter email")
-    return; 
-       }
-       if (address.trim() === '') {
-        toast.warning("Please Enter email")
-    return; 
-       }
+    
         profilestu.createstudentdetails({Name:name,email:email,Education:educ,conduct:contact,Address:address})
         .then((response) => {
             toast.success(response.data.message);
