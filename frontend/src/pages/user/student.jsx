@@ -65,33 +65,23 @@ const navigate=useState()
     function createstudent()
     {
      
-       
-        // console.log(`Fetching URL: https://backendconnection-14tc.onrender.com/createstudentdetails}`);
-       
-        // fetch(`https://backendconnection-14tc.onrender.com/createstudentdetails`,{
-        //     method:'POST',
-        //     headers:{
-        //        'Accept':'application/json' ,
-        //        'Content-Type':'application/json'
-        //     },
-        //     body:JSON.stringify({Name:name,email:email,Education:educ,conduct:contact,Address:address})
-     
-    
-        //             // clear the form
-                  
-    
-                  
-        // }).then((result) =>[
-        //     result.json().then((resp)=>{
-        //        toast.success(resp.data.message);
-              
-        //                       // clear the form
-                            
-        //                       setTimeout(() => {
-        //                           navigate("/dashboard");
-        //                       }, 500);
-        //     })
-        // ])
+       if (name.trim() === '') {
+           toast.warning("Please Enter Name")
+       return; 
+       }
+      
+       if (educ.trim() === '') {
+        toast.warning("Please Enter email")
+    return; 
+       }
+       if (contact.trim() === '') {
+        toast.warning("Please Enter email")
+    return; 
+       }
+       if (address.trim() === '') {
+        toast.warning("Please Enter email")
+    return; 
+       }
         profilestu.createstudentdetails({Name:name,email:email,Education:educ,conduct:contact,Address:address})
         .then((response) => {
             toast.success(response.data.message);
