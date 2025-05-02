@@ -209,13 +209,13 @@ products && products.map((post,index) => (
                                </button>
                                </div>
                                <div>
-                               {/* <button 
+                               <button 
                                onClick={() => navigate(`FeedbackReview/${post._id}`)}
                                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 w-60 rounded focus:outline-none focus:shadow-outline"
                                    type="submit"
                                >
                                   Feedback and Review
-                               </button> */}
+                               </button>
                                </div>
 
                            </div>
