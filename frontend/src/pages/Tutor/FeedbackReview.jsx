@@ -20,7 +20,7 @@ const ReviewFeedback = () =>
 
 async function gettutorbuid() {
         try {
-          const response = await fetch(`http://localhost:3001/getTutorsdetailsbyfeedback/${ID}`); // Add a valid URL here
+          const response = await fetch(`https://backendconnection-14tc.onrender.com/getTutorsdetailsbyfeedback/${ID}`); // Add a valid URL here
           const {tutor}  = await response.json(); // Add await before response.json()
           console.log(tutor);
           setProduct(tutor)
