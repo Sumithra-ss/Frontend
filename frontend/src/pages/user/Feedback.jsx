@@ -28,7 +28,7 @@ const Feedback = ()=>
     async function updateFeedback() {
       console.log(feedack)
       
-              fetch(`https://backendconnection-14tc.onrender.com/updateTutordetbyid/${tutID}`,{
+              fetch(`http://localhost:3001/updateTutordetbyid/${tutID}`,{
                   method:'PUT',
                   headers:{
                      'Accept':'application/json' ,
