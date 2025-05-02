@@ -8,7 +8,7 @@ const ReviewFeedback = () =>
     const {ID}=useParams();
     console.log(ID)
       useEffect(()=>{
-            gettutorbuid()
+        getTutorID()
            },[])
            const colors = {
             orange: "#FFBA5A",

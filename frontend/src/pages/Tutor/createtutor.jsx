@@ -20,25 +20,7 @@ const {ID}=useParams();
     const dispatch = useDispatch();
     const navigate=useNavigate()
     console.log(ID)
-     useEffect(()=>{
-            gettutorbuid()
-           },[])
-           
-        async function gettutorbuid() {
-            try {
-              const response = await fetch("https://backendconnection-14tc.onrender.com/getTutorbyid/67f77fe3ee97a79c4308008c"); // Add a valid URL here
-              const {post}  = await response.json(); // Add await before response.json()
-              console.log(post);
-             
-                           setProduct(post)
-              console.log(post)
-             
-            } catch (err) {
-              console.log("Error:", err);
-            }
     
-    
-          }
           const createtutor = (e)=>{
             e.preventDefault();
             console.log(name,email,password,experi,expetetise,Qualification,price)
