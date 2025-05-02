@@ -34,7 +34,7 @@ const tutorProfile = () =>{
        
     async function gettutorbuid() {
         try {
-          const response = await fetch(`http://localhost:3001/getTutorbyid/${ID}`); // Add a valid URL here
+          const response = await fetch(`https://backendconnection-14tc.onrender.com/getTutorbyid/${ID}`); // Add a valid URL here
           const data  = await response.json(); // Add await before response.json()
           console.log(data);
           setProduct(data)
@@ -72,7 +72,7 @@ const tutorProfile = () =>{
         }
       
        
-        fetch(`http://localhost:3001/updateTutorbyid/${ID}`,{
+        fetch(`https://backendconnection-14tc.onrender.com/updateTutorbyid/${ID}`,{
             method:'PUT',
             headers:{
                'Accept':'application/json' ,
