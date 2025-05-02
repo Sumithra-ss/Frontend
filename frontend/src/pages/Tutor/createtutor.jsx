@@ -26,7 +26,7 @@ const {ID}=useParams();
            
         async function gettutorbuid() {
             try {
-              const response = await fetch("http://localhost:3001/getTutorbyid/67f77fe3ee97a79c4308008c"); // Add a valid URL here
+              const response = await fetch("https://backendconnection-14tc.onrender.com/getTutorbyid/67f77fe3ee97a79c4308008c"); // Add a valid URL here
               const {post}  = await response.json(); // Add await before response.json()
               console.log(post);
              

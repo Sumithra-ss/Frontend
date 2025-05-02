@@ -14,7 +14,7 @@ const Dashboard = (setResult1) => {
   const navigate=useNavigate()
  const [products,setProduct]=useState([])
  const [tutordet,setTutordet]=useState([])
- const [filter,setFilter]=useState([''])
+ const [filteritem,setFilteritem]=useState(undefined)
  const [currentValue, setCurrentValue] = useState(0);
  const [hoverValue, setHoverValue] = useState(undefined);
  const [records,setRecords]=useState([])
@@ -69,12 +69,15 @@ const handleMouseLeave = () => {
     console.log(value)
    const response=await fetch(`https://backendconnection-14tc.onrender.com/getTutorsdetailsbyDashboard/${value}`)
    const tutor  = await response.json(); 
+   
 // const results =json.tutor.filter((user)=>{
 //   return (
 //     value && user && user.subject.toLowerCase().includes(value)
 //   )
 // })
-setProduct(tutor)
+setTutordet(tutor)
+setFilteritem(value)
+
 
 
     
@@ -85,7 +88,8 @@ setProduct(tutor)
    
       
   }
-  
+  console.log(tutordet)
+  console.log(filteritem)
   // if(tutordet.length===0){
   //   toast.warning("no data available")
     
@@ -94,6 +98,7 @@ setProduct(tutor)
     return <p>No products available.</p>;
     
 }
+
     return (
 
 
@@ -125,73 +130,112 @@ setProduct(tutor)
   
 
 <>
-<p class="font-normal md:font-bold ...">
-  Book Appoinment
-</p>
-
-
-
-      {
-      // products && products.map((item,i)=>{
-      //   return(
-      //     <div key={i._id}>
-      //       {item.price}
-      //     </div>
-      //   )
-      // })
-      
-      
-      <div className='w-full grid grid-cols-auto gap-4 pt-5 gap-y-6 px-3 sm:px-0'>
+{
+filteritem ? (
+  // Render this if data exists
+  <div className='w-full grid grid-cols-auto gap-4 pt-5 gap-y-6 px-3 sm:px-0'>
        
-      {
-        
-        
-        products && products.map((record,index) => (
-        
-        <div className='border border-blue-200 rounded-xl overflow-hidden cursor-pointer hover:translate-y-[-10px] transition-all duration-500 ' key={index}>
-            <p>Experience:{record?.tutorid?.Experience }</p> 
-             < Link to ={`dashboard/Appoinment/${record._id}`}>subject:{record.subject}</Link>
-             <p>Experience:{record?.tutorid?.Experience }</p>
-          <div className="card-image">
-        
- <img className='' src={assets.l1}/>
-          </div>
-      
-      
-         
-         <p>Qualifications:{record?.tutorid?.Qualifications}</p>
-         <p>Feedback:{record.Feedback}</p>
-         <div style={styles.stars}>
+  {
+    
+   
+    tutordet && tutordet.map((record,index) => (
+    
+    <div className='border border-blue-200 rounded-xl overflow-hidden cursor-pointer hover:translate-y-[-10px] transition-all duration-500 ' key={index}>
+        <p>Experience:{record?.tutorid?.Experience }</p> 
+         < Link to ={`dashboard/Appoinment/${record._id}`}>subject:{record.subject}</Link>
+         <p>Experience:{record?.tutorid?.Experience }</p>
+      <div className="card-image">
+    
+<img className='' src={assets.l1}/>
+      </div>
+  
+  
+     
+     <p>Qualifications:{record?.tutorid?.Qualifications}</p>
+     <p>Feedback:{record.Feedback}</p>
+     <div style={styles.stars}>
 
-          {
-            stars.map((_,index)=>{
-              return(
+      {
+        stars.map((_,index)=>{
+          return(
 <FaStar key={index}
 size={24}
 color={(record?.Rating || 5) > index ? colors.orange : colors.grey}
 
 style={{
-  marginRight: 10,
-  cursor: "pointer"
+marginRight: 10,
+cursor: "pointer"
 }}/>
 
-              )
-              
-            })
-            
-          }
-
-
+          )
+          
+        })
         
+      }
 
-         </div>
-         
-        </div>
-      ))}
+
+    
+
+     </div>
+     
     </div>
+  ))}
+</div>
+
+) : (
+  <div className='w-full grid grid-cols-auto gap-4 pt-5 gap-y-6 px-3 sm:px-0'>
+       
+  {
+    
+    
+    products && products.map((record,index) => (
+    
+    <div className='border border-blue-200 rounded-xl overflow-hidden cursor-pointer hover:translate-y-[-10px] transition-all duration-500 ' key={index}>
+        <p>Experience:{record?.tutorid?.Experience }</p> 
+         < Link to ={`dashboard/Appoinment/${record._id}`}>subject:{record.subject}</Link>
+         <p>Experience:{record?.tutorid?.Experience }</p>
+      <div className="card-image">
+    
+<img className='' src={assets.l1}/>
+      </div>
+  
+  
+     
+     <p>Qualifications:{record?.tutorid?.Qualifications}</p>
+     <p>Feedback:{record.Feedback}</p>
+     <div style={styles.stars}>
+
+      {
+        stars.map((_,index)=>{
+          return(
+<FaStar key={index}
+size={24}
+color={(record?.Rating || 5) > index ? colors.grey : colors.orange}
+
+style={{
+marginRight: 10,
+cursor: "pointer"
+}}/>
+
+          )
+          
+        })
+        
+      }
 
 
-   }
+    
+
+     </div>
+     
+    </div>
+  ))}
+</div>
+
+)
+
+}
+
    </>
 
 </div>
