@@ -8,7 +8,7 @@ const ReviewFeedback = () =>
     const {ID}=useParams();
     console.log(ID)
       useEffect(()=>{
-        getTutorID()
+            gettutorbuid()
            },[])
            const colors = {
             orange: "#FFBA5A",
@@ -18,11 +18,22 @@ const ReviewFeedback = () =>
           const stars=Array(5).fill(0)
           
 
+async function gettutorbuid() {
+        try {
+          const response = await fetch(`http://localhost:3001/getTutorsdetailsbyfeedback/${ID}`); // Add a valid URL here
+          const {tutor}  = await response.json(); // Add await before response.json()
+          console.log(tutor);
+          setProduct(tutor)
+          
+        } catch (err) {
+          console.log("Error:", err);
+        }
 
+      }
 
       async function getTutorID() {
         try {
-         const response = await fetch("https://backendconnection-14tc.onrender.com/gettutoridbyname/React"); // Add a valid URL here
+         const response = await fetch("http://localhost:3001/gettutoridbyname/React"); // Add a valid URL here
          //const response = await fetch("http://localhost:3001/getTutorsdetails?keyword=on"); // Add a valid URL here
           const {tutor}  = await response.json(); // Add await before response.json()
           console.log(tutor);
